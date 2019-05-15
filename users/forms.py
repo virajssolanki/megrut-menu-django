@@ -19,6 +19,11 @@ class UserUpdateForm(forms.ModelForm):
 		fields = ['username', 'email']
 
 class ProfileUpdateForm(forms.ModelForm):
+	location = forms.URLField(required=False)
+	close = forms.BooleanField(required=False)
+	mess_name = forms.CharField(required=False)
+	number = forms.CharField(required=False)
+
 	class Meta:
 		model = Profile
-		fields = ['image']
+		fields = ['image', 'location', 'close', 'mess_name']

@@ -35,19 +35,3 @@ def profile(request, username):
 	context = locals()
 	return render(request, 'users/profile.html', context)
 
-
-@login_required
-def mess_profile(request, username):
-    try:
-        user = User.objects.get(username=username)
-    except:
-        raise Http404
-
-    # Flag that determines if we should show editable elements in template
-    editable = False
-    # Handling non authenticated user for obvious reasons
-    if request.user.is_authenticated and request.user == user:
-        editable = True
-
-    context = locals()
-    return render(request, 'users/mess_profile.html', context)

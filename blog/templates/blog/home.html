@@ -1,16 +1,33 @@
 {% extends "blog/base.html" %}
 {% block content %}
     {% for post in posts %}
-        <article class="media content-section">
-          <img class="rounded_img article-img" src="{{ post.author.profile.image.url }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{% url 'profile' post.author.username %}">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted | date:"F d, Y" }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+          <div class="panel panel-outline">
+
+          <div class="panel-heading">
+          <dl class="text-left"> <dt><strong><a href="{% url 'profile' post.author.username %}"> {{ post.author }}</a></strong></dt>
+          <dd><small>Mess owner last seen : {{ post.date_posted | date:"F d, Y" }}</small></dd></dl>
+          </div><hr>
+
+          <div class="panle-body">
+                 <ul style="list-style-type:None;">
+                 <li class="menulist">{{ post.menu }}</li>
+                 </ul>
+                 <div class="a"> <!-- buttons start here -->
+                 <button type="button" class="btn success btn-default btn-sm"> I'm Visiting</button>
+                 <a href="{{ post.author.location }}" target="_blank" >
+                 <button  type="button" class="btn btn-default success btn-sm"> 
+                 <span class="glyphicon glyphicon-map-marker"></span> Map</button>
+                 </a>
+                 <button type="button" class="btn success btn-default  btn-sm">₹ {{ post.price }}/person</button> 
+                 <a href="tel:{{ post.author.number }}">
+                 <button  type="button" class="btn success btn-default btn-sm">
+                 <span class="glyphicon glyphicon-earphone"></span>  Call</button>
+                 </a>
+                 </div>
+
           </div>
-        </article>
+          </div>
     {% endfor %}
 {% endblock content %}
+
+
