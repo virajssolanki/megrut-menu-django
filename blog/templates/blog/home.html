@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
     {% for post in posts %}
+    {% if post.active is True%}
           <div class="panel panel-outline">
           <div class="panel-heading">
           <span class="text-left"> <dt><strong><a href="{% url 'mess_profile' post.author.username %}"> {{ post.author.username }}</a></strong></dt>
@@ -23,8 +24,8 @@
                  <span class="glyphicon glyphicon-earphone"></span>  Call</button>
                  </a>
                  </div>
-
           </div>
           </div>
+    {% endif %}
     {% endfor %}
 {% endblock content %}
