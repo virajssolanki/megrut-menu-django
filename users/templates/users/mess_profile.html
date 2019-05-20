@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+     
+  <div class="row">
+    <div class="col-lg-2 col-sm-2 col-xs-5">
+      <img class="img-thumbnail" style="width:100%; height:100px;" src="{{ user.profile.image.url }}">
+    </div>
+    <div class="col-lg-10 col-sm-10 col-xs-7">
+              
+              <dt style="font-size: 25px;"><strong>{{ user.username }} <span class="glyphicon glyphicon-ok-circle"></span></strong></dt>
+              Bootstrap includes 260 glyph
+              Last seen :  }}
+    </div>
+  </div><br>
+                    <a href="{% url 'edit_profile' user.username %}"><button  type="button" class="btn btn-default success btn-sm">Update Profile</button></a>
+                    <button  type="button" class="btn btn-default danger btn-sm">Close Mess</button>
+                    <button  type="button" class="btn btn-default info btn-sm">Share</button></a>
+                    
+                   </br></br><hr>
+</div>
+{% endblock content %}

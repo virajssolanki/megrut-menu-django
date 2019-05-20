@@ -1,0 +1,98 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-sm-2 col-xs-5">
+      <img class="img-thumbnail" style="width:100%; height:100px;" src="{{ user.profile.image.url }}">
+      </div>
+      <div class="col-lg-10 col-sm-10 col-xs-7">
+      <dt style="font-size: 25px;"><strong>{{ user.username }} <span class="glyphicon glyphicon-ok-circle"></span></strong></dt>
+              Bootstrap includes 260 glyph
+              Last seen :  }}
+       </div>
+    </div><br>
+          <a href="{% url 'edit_profile' user.username %}">
+          <button  type="button" class="btn btn-default success btn-sm">Update Profile</button>
+          </a>
+          <button  type="button" class="btn btn-default info btn-sm">
+          <span class="glyphicon glyphicon-share"></span> Share</button>
+          <button  type="button" class="btn btn-default danger btn-sm">Close Mess</button>
+          <a href="{% url 'post-create' %}">
+          <button  type="button" class="btn btn-default success btn-sm">Add menu</button>
+          </a></br></br><hr>
+{% if form %}
+          <div class="panel panel-outline">
+          <div class="panel-heading">
+               <form method="POST">
+               {% csrf_token %}
+               <fieldset>
+               {{ form|crispy }}
+               </fieldset>
+             
+              <button class="btn btn-info" type="submit">Add</button>
+              <a class="btn btn-info" href="{% url 'mymess' user.username %}">Cancel</a>
+              
+             </form>  
+          </div>
+          </div>
+{% else %}
+    {% for post in active_post %}
+          <div class="panel panel-outline" style="border-color: #00b26f;">
+          <div class="panel-heading">
+          <span class="text-left"> <dt><strong> {{ post.menu }} <span class="label label-success">Live menu</span> </strong></dt>
+          </div><hr>
+          <div class="panle-body">
+                 <div class="a"> <!-- buttons start here -->
+                 <a href="{% url 'post-update' post.id %}" target="_blank" >
+                 <button  type="button" class="btn btn-default success btn-sm"> 
+                 <span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                 </a>
+                 <a href="#">
+                 <button  type="button" class="btn btn-default info btn-sm">
+                 <span class="glyphicon glyphicon-share"></span> Share</button>
+                 </a>
+                 <a style="float: right; padding-right: 10px;" href="{% url 'post-delete' post.id %}">
+                 <button  type="button" class="btn btn-default danger btn-sm">
+                 <span class="glyphicon glyphicon-delete"></span> DELETE</button>
+                 </a>
+                 </div>
+          </div>
+          </div><br><hr>
+    {% endfor %}
+    {% for post in posts %}
+          <div class="panel panel-outline">
+          <div class="panel-heading">
+          <span class="text-left"> <dt><strong> {{ post.menu }}</strong></dt>
+          </div><hr>
+          <div class="panle-body">
+                 <div class="a"> <!-- buttons start here -->
+                 <a href="{% url 'post-update' post.id %}" target="_blank" >
+                 <button  type="button" class="btn btn-default success btn-sm"> 
+                 <span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                 </a>
+                 <a href="#">
+                 <button  type="button" class="btn btn-default info btn-sm">
+                 <span class="glyphicon glyphicon-share"></span> Share</button>
+                 </a>
+                 <a style="float: right; padding-right: 10px;" href="{% url 'post-delete' post.id %}">
+                 <button  type="button" class="btn btn-default danger btn-sm">
+                 <span class="glyphicon glyphicon-delete"></span> DELETE</button>
+                 </a>
+
+                 <a href="{% url 'activate' post.id %}" target="_blank" >
+                 <button  type="button" class="btn btn-default success btn-sm"> 
+                 <span class="glyphicon glyphicon-pencil"></span> activate</button>
+                 </a>
+
+                 </div>
+          </div>
+          </div>
+    {% endfor %}
+
+
+{% endif %}  
+
+</div>   
+{% endblock content %}

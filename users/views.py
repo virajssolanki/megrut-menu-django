@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
+from blog.models import Post
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 def register(request):
@@ -10,14 +12,17 @@ def register(request):
 		if form.is_valid():
 			form.save()
 			username  = form.cleaned_data.get('username')
+			raw_password = form.cleaned_data.get('password1')
+			user = authenticate(username=username, password=raw_password)
+			login(request, user)
 			messages.success(request, f'Account created for {username}!')
-			return redirect('login')
+			return redirect('mess_profile', username=username)
 	else:
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form':form})
 
 @login_required
-def profile(request, username):
+def edit_profile(request, username):
 	user = User.objects.get(username=username)
 	if request.user == user:
 		if request.method == 'POST':
@@ -28,10 +33,29 @@ def profile(request, username):
 				u_form.save()
 				p_form.save()
 				messages.success(request, f'Updated success')
-				return redirect('profile', username=user.username)
+				return redirect('mymess', username=user.username)
 		else:
 			u_form = UserUpdateForm(instance=request.user)
 			p_form = ProfileUpdateForm(instance=request.user.profile)
 	context = locals()
-	return render(request, 'users/profile.html', context)
+	return render(request, 'users/edit_profile.html', context)
 
+@login_required
+def mymess(request, username):
+	user = User.objects.get(username=username)
+	active_post = Post.objects.filter(author=request.user).filter(active=True)
+	posts = Post.objects.filter(author=request.user).filter(active=False)
+	if request.user == user:
+		context = locals()
+		return render(request, 'users/mymess.html', context)
+
+
+def mess_profile(request, username):
+	user = User.objects.get(username=username)
+	context = locals()
+	return render(request, 'users/mess_profile.html', context)
+
+def activate(request, post):
+	post = Post.objects.filter(id=post)
+	context = locals()
+	return render(request, 'users/mess_profile.html', context)

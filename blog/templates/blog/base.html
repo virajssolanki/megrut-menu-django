@@ -41,8 +41,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% if user.is_authenticated %}
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'profile' user.username %}">Profile</a></li>
-                    <li><a href="{% url 'post-create' %}">New Post</a></li>
+                    <li><a href="{% url 'mymess' user.username %}">My Mess</a></li>
+                    
                 </ul>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
