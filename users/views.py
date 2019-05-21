@@ -16,7 +16,7 @@ def register(request):
 			user = authenticate(username=username, password=raw_password)
 			login(request, user)
 			messages.success(request, f'Account created for {username}!')
-			return redirect('mess_profile', username=username)
+			return redirect('mymess', username=username)
 	else:
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form':form})
@@ -55,7 +55,14 @@ def mess_profile(request, username):
 	context = locals()
 	return render(request, 'users/mess_profile.html', context)
 
-def activate(request, post):
-	post = Post.objects.filter(id=post)
-	context = locals()
-	return render(request, 'users/mess_profile.html', context)
+def close_mess(request, username):
+	user = User.objects.get(username=username)
+	user.profile.close = True
+	user.save()
+	return redirect('mymess', username=user.username)
+
+def open_mess(request, username):
+	user = User.objects.get(username=username)
+	user.profile.close = False
+	user.save()
+	return redirect('mymess', username=user.username)

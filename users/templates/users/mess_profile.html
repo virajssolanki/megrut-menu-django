@@ -12,10 +12,9 @@
               
               <dt style="font-size: 25px;"><strong>{{ user.username }} <span class="glyphicon glyphicon-ok-circle"></span></strong></dt>
               Bootstrap includes 260 glyph
-              Last seen :  }}
+              Last seen :  {{ user.profile.last_seen|timesince}}
     </div>
   </div><br>
-                    <a href="{% url 'edit_profile' user.username %}"><button  type="button" class="btn btn-default success btn-sm">Update Profile</button></a>
                     <button  type="button" class="btn btn-default danger btn-sm">Close Mess</button>
                     <button  type="button" class="btn btn-default info btn-sm">Share</button></a>
                     

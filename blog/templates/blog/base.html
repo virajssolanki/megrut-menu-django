@@ -61,8 +61,7 @@
 
     <main role="main" class="container">
       <div class="row">
-        <div class="col-md-8">
-
+          <div class="container">
           {% if messages %}
           {% for i in messages %}
           <div class="alert alert-success">
@@ -70,11 +69,11 @@
           </div>
           {% endfor %}
           {% endif %}
+          </div>
 
           {% block content %}{% endblock %}
           
         </div>
-      </div>
     </main>
     
 

@@ -8,17 +8,31 @@
       <img class="img-thumbnail" style="width:100%; height:100px;" src="{{ user.profile.image.url }}">
       </div>
       <div class="col-lg-10 col-sm-10 col-xs-7">
-      <dt style="font-size: 25px;"><strong>{{ user.username }} <span class="glyphicon glyphicon-ok-circle"></span></strong></dt>
+      <dt style="font-size: 25px;"><strong>{{ user.username }} 
+       {% if user.profile.close == True %}
+       <span class="glyphicon glyphicon-remove-sign" style="color: #f44336;"></span>
+       {% else %}
+      <span class="glyphicon glyphicon-ok-circle" style="color: #00b26f;"></span>
+       {% endif %}
+     </strong></dt>
               Bootstrap includes 260 glyph
-              Last seen :  }}
+              Last seen : {{ user.profile.last_seen }}
        </div>
     </div><br>
           <a href="{% url 'edit_profile' user.username %}">
           <button  type="button" class="btn btn-default success btn-sm">Update Profile</button>
           </a>
-          <button  type="button" class="btn btn-default info btn-sm">
-          <span class="glyphicon glyphicon-share"></span> Share</button>
+
+          {% if user.profile.close == False %}
+          <a style="float: right; padding-right: 10px;" href="{% url 'close_mess' user.username %}">
           <button  type="button" class="btn btn-default danger btn-sm">Close Mess</button>
+          </a>
+          {% else %}
+          <a style="float: right; padding-right: 10px;" href="{% url 'open_mess' user.username %}">
+          <button  type="button" class="btn btn-default info btn-sm">Open mess</button>
+          </a>
+          {% endif %}
+
           <a href="{% url 'post-create' %}">
           <button  type="button" class="btn btn-default success btn-sm">Add menu</button>
           </a></br></br><hr>
@@ -30,11 +44,9 @@
                <fieldset>
                {{ form|crispy }}
                </fieldset>
-             
-              <button class="btn btn-info" type="submit">Add</button>
-              <a class="btn btn-info" href="{% url 'mymess' user.username %}">Cancel</a>
-              
-             </form>  
+               <button class="btn btn-info" type="submit">Add</button>
+               <a class="btn btn-info" href="{% url 'mymess' user.username %}">Cancel</a>
+               </form>  
           </div>
           </div>
 {% else %}
@@ -45,17 +57,20 @@
           </div><hr>
           <div class="panle-body">
                  <div class="a"> <!-- buttons start here -->
-                 <a href="{% url 'post-update' post.id %}" target="_blank" >
+
+                 <a href="{% url 'post-update' post.id %}">
                  <button  type="button" class="btn btn-default success btn-sm"> 
-                 <span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                 <span class="glyphicon glyphicon-pencil"></span></button>
                  </a>
+
                  <a href="#">
                  <button  type="button" class="btn btn-default info btn-sm">
-                 <span class="glyphicon glyphicon-share"></span> Share</button>
+                 <span class="glyphicon glyphicon-share"></span></button>
                  </a>
-                 <a style="float: right; padding-right: 10px;" href="{% url 'post-delete' post.id %}">
-                 <button  type="button" class="btn btn-default danger btn-sm">
-                 <span class="glyphicon glyphicon-delete"></span> DELETE</button>
+
+                 <a style="float: right; padding-right: 10px;" href="#">
+                 <button class="btn btn-default btn-sm disabled">
+                 <span class="glyphicon glyphicon-trash"></span></button>
                  </a>
                  </div>
           </div>
@@ -68,22 +83,20 @@
           </div><hr>
           <div class="panle-body">
                  <div class="a"> <!-- buttons start here -->
-                 <a href="{% url 'post-update' post.id %}" target="_blank" >
+
+                 <a href="{% url 'post-update' post.id %}">
                  <button  type="button" class="btn btn-default success btn-sm"> 
-                 <span class="glyphicon glyphicon-pencil"></span> Edit</button>
-                 </a>
-                 <a href="#">
-                 <button  type="button" class="btn btn-default info btn-sm">
-                 <span class="glyphicon glyphicon-share"></span> Share</button>
-                 </a>
-                 <a style="float: right; padding-right: 10px;" href="{% url 'post-delete' post.id %}">
-                 <button  type="button" class="btn btn-default danger btn-sm">
-                 <span class="glyphicon glyphicon-delete"></span> DELETE</button>
+                 <span class="glyphicon glyphicon-pencil"></span></button>
                  </a>
 
-                 <a href="{% url 'activate' post.id %}" target="_blank" >
-                 <button  type="button" class="btn btn-default success btn-sm"> 
-                 <span class="glyphicon glyphicon-pencil"></span> activate</button>
+                 <a href="{% url 'activate' post.id %}" >
+                 <button  type="button" class="btn btn-default info btn-sm"> 
+                 <span class="glyphicon glyphicon-send"></span></button>
+                 </a>
+
+                 <a style="float: right; padding-right: 10px;" href="{% url 'post-delete' post.id %}">
+                 <button  type="button" class="btn btn-default danger btn-sm">
+                 <span class="glyphicon glyphicon-trash"></span></button>
                  </a>
 
                  </div>
