@@ -10,8 +10,14 @@
           </div><hr>
           <div class="panle-body">
           {% if post.author.profile.close == False %}
+          {% with menu=post.menu %}  
+
                  <ul style="list-style-type:None;">
-                 <li class="menulist">{{ post.menu }}</li>
+
+                 <b><li class="menulist">{% filter force_escape|upper %}{{ menu }}{% endfilter %}</li></b>
+
+
+          {% endwith %}
                  </ul>
                  <div class="a"> <!-- buttons start here -->
                  <button type="button" class="btn success btn-default btn-sm">

@@ -15,7 +15,7 @@ def register(request):
 			raw_password = form.cleaned_data.get('password1')
 			user = authenticate(username=username, password=raw_password)
 			login(request, user)
-			messages.success(request, f'Account created for {username}!')
+			messages.success(request, f'ACCOUNT CREATED FOR {username}!')
 			return redirect('mymess', username=username)
 	else:
 		form = UserRegisterForm()
@@ -28,11 +28,10 @@ def edit_profile(request, username):
 		if request.method == 'POST':
 			u_form = UserUpdateForm(request.POST, instance=request.user)
 			p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-
 			if u_form.is_valid() and p_form.is_valid():
 				u_form.save()
 				p_form.save()
-				messages.success(request, f'Updated success')
+				messages.success(request, f'PROFILE UPDATED SUCCESSFULLY')
 				return redirect('mymess', username=user.username)
 		else:
 			u_form = UserUpdateForm(instance=request.user)
@@ -59,10 +58,12 @@ def close_mess(request, username):
 	user = User.objects.get(username=username)
 	user.profile.close = True
 	user.save()
+	messages.warning(request, f'MESS IS CLOSED')
 	return redirect('mymess', username=user.username)
 
 def open_mess(request, username):
 	user = User.objects.get(username=username)
 	user.profile.close = False
 	user.save()
+	messages.info(request, f'MESS IS OPEN')
 	return redirect('mymess', username=user.username)

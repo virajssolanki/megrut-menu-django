@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from django.contrib import messages
+from django.contrib.messages import constants as message_constants
 from .forms import AddMenuForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (
@@ -15,14 +16,18 @@ from django.views.generic import (
 									UpdateView,
 									DeleteView
 									)
-
+MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
+									message_constants.INFO: 'info',
+									message_constants.SUCCESS: 'success',
+									message_constants.WARNING: 'warning',
+									message_constants.ERROR: 'danger',}
 
 @login_required
 def delete_menu(request, pk):
 	menu = Post.objects.get(id=pk)
 	menu.delete()
-	messages.danger(request, f'Menu Deleted')
-	return render(request, 'users/mymess.html' , context)
+	messages.warning(request, f'MENU DELETED')
+	return redirect('mymess', username=request.user)
 
 
 @login_required
@@ -37,7 +42,7 @@ def add_menu(request):
 			menu = form.save(commit=False)
 			menu.author = request.user
 			menu.save()
-			messages.success(request, f'Menu is live')
+			messages.success(request, f'MENU ADDED')
 			return redirect('mymess', username=request.user)
 	else:
 		form = AddMenuForm()
@@ -57,7 +62,7 @@ def update_menu(request, pk):
 			menu = form.save(commit=False)
 			menu.active = True
 			menu.save()
-			messages.success(request, f'Updated success')
+			messages.success(request, f'MENU UPDATED')
 			return redirect('mymess', username=request.user)
 	else:
 		form = AddMenuForm(instance=post)
@@ -80,6 +85,6 @@ def activate(request, pk):
 		i.save()
 	post.active = True
 	post.save()
-	messages.success(request, f'Menu is now live')
+	messages.success(request, f'MENU IS NOW LIVE')
 	context = locals()
 	return redirect('mymess', username=request.user)
