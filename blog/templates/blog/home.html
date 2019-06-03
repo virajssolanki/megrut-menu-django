@@ -6,7 +6,7 @@
           <div class="panel panel-outline">
           <div class="panel-heading">
           <span class="text-left"> <dt><strong><a href="{% url 'mess_profile' post.author.username %}"> {{ post.author.username }}</a></strong></dt>
-          <dd><small>Last seen : {{ post.author.last_login|timesince }}</small></dd></span>
+          <dd><small>Updated : {{ post.date_posted|timesince }} ago</small></dd></span>
           </div><hr>
           <div class="panle-body">
           {% if post.author.profile.close == False %}
@@ -16,7 +16,7 @@
 
                  <b><li class="menulist">{% filter force_escape|upper %}{{ menu }}{% endfilter %}</li></b>
 
-
+ 
           {% endwith %}
                  </ul>
                  <div class="a"> <!-- buttons start here -->
@@ -45,4 +45,43 @@
      </div>
     {% endif %}
     {% endfor %}
+
+
+    {% for user in nomenu_users %}
+        <div class="container">
+          <div class="panel panel-outline">
+          <div class="panel-heading">
+          <span class="text-left"> <dt><strong><a href="{% url 'mess_profile' user.username %}"> {{ user.username }}</a></strong></dt>
+          <dd><small>Last active : {{ user.last_login|timesince }} ago</small></dd></span>
+          </div><hr>
+          <div class="panle-body">
+          {% if user.profile.close == False %}
+
+                 </ul>
+                 <div class="a"> <!-- buttons start here -->
+
+                 <a href="tel:{{ post.author.profile.number }}">
+                 <button  type="button" class="btn success btn-default btn-sm">
+                 <span class="glyphicon glyphicon-earphone"> REQUEST MENU</span></button>
+                 </a>
+
+                 <a href="https://api.whatsapp.com/send?phone=92{{ post.author.profile.number }}&text=I%20would%20like%20to%20give%20order.">
+                 <button  type="button" class="btn success btn-default btn-sm">
+                 <span class="glyphicon glyphicon-send"> REQUEST MENU</span></button>
+                 </a>
+                 
+                 </div>
+            {% else %}
+                 <div class="a"> <!-- buttons start here -->
+                 <button type="button" class="btn danger btn-default btn-sm">
+                 <span class="glyphicon glyphicon-remove-sign"> MESS IS CLOSED</span>
+                 </button>
+                 </div>            
+            {% endif %}
+          </div>
+          </div>
+     </div>
+    {% endfor %}
+
+
 {% endblock content %}

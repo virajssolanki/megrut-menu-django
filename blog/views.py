@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from .models import Post
+from django.contrib.auth.models import User
+from django.utils import timezone
 from django.contrib import messages
 from django.contrib.messages import constants as message_constants
 from .forms import AddMenuForm
@@ -61,6 +64,7 @@ def update_menu(request, pk):
 					i.save()
 			menu = form.save(commit=False)
 			menu.active = True
+			menu.date_posted = timezone.now()
 			menu.save()
 			messages.success(request, f'MENU UPDATED')
 			return redirect('mymess', username=request.user)
@@ -68,12 +72,6 @@ def update_menu(request, pk):
 		form = AddMenuForm(instance=post)
 		context = locals()
 		return render(request, 'users/mymess.html' , context)
-
-
-def menulist(request):
-	posts = Post.objects.filter(active=True)
-	context = locals()
-	return render(request, 'blog/home.html', context)
 
 
 @login_required
@@ -84,7 +82,21 @@ def activate(request, pk):
 		i.active = False
 		i.save()
 	post.active = True
+	post.date_posted = timezone.now()
 	post.save()
 	messages.success(request, f'MENU IS NOW LIVE')
 	context = locals()
 	return redirect('mymess', username=request.user)
+
+
+def menulist(request):
+	nomenu_users = []
+	users = User.objects.all()
+	for i in users:
+		menu = Post.objects.filter(author=i).first()
+		if menu is None:
+			nomenu_users.append(i)
+
+	posts = Post.objects.filter(active=True).order_by('-date_posted')
+	context = locals()
+	return render(request, 'blog/home.html', context)

@@ -9,6 +9,7 @@ class Profile(models.Model):
 	mess_name = models.CharField(max_length=20, blank=True)
 	number = models.CharField(max_length=10, blank=True)
 	location = models.URLField(max_length=300, blank=True)
+	city = models.CharField(max_length=40, blank=True)
 	close = models.BooleanField(default=False)
 
 	def __str__(self):
