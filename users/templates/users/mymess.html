@@ -15,8 +15,7 @@
       <span class="glyphicon glyphicon-ok-circle" style="color: #00b26f;"></span>
        {% endif %}
      </strong></dt>
-              Bootstrap includes 260 glyph
-              Last seen : {{ user.profile.last_seen }}
+              Last active : {{ user.last_login|timesince }} ago
        </div>
     </div><br>
           <a href="{% url 'edit_profile' user.username %}">
@@ -103,7 +102,6 @@
           </div>
           </div>
     {% endfor %}
-
 
 {% endif %}  
 

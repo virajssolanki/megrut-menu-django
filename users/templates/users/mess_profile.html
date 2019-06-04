@@ -1,23 +1,76 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
 <div class="container">
-     
-  <div class="row">
-    <div class="col-lg-2 col-sm-2 col-xs-5">
+    <div class="row">
+      <div class="col-lg-2 col-sm-2 col-xs-5">
       <img class="img-thumbnail" style="width:100%; height:100px;" src="{{ user.profile.image.url }}">
-    </div>
-    <div class="col-lg-10 col-sm-10 col-xs-7">
-              
-              <dt style="font-size: 25px;"><strong>{{ user.username }} <span class="glyphicon glyphicon-ok-circle"></span></strong></dt>
-              Bootstrap includes 260 glyph
-              Last seen :  {{ user.profile.last_seen|timesince}}
-    </div>
-  </div><br>
-                    <button  type="button" class="btn btn-default danger btn-sm">Close Mess</button>
-                    <button  type="button" class="btn btn-default info btn-sm">Share</button></a>
-                    
-                   </br></br><hr>
-</div>
+      </div>
+      <div class="col-lg-10 col-sm-10 col-xs-7">
+      <dt style="font-size: 25px;"><strong>{{ user.username }} 
+       {% if user.profile.close == True %}
+       <span class="glyphicon glyphicon-remove-sign" style="color: #f44336;"></span>
+       {% else %}
+      <span class="glyphicon glyphicon-ok-circle" style="color: #00b26f;"></span>
+       {% endif %}
+     </strong></dt>
+              Last active : {{ user.last_login|timesince }} ago
+       </div>
+    </div><br>
+  
+                 <button type="button" class="btn info btn-default btn-sm">
+                 <span class="glyphicon glyphicon-thumbs-up"> LIKE</span>
+                 </button>
+
+                 <a href="tel:{{ post.author.profile.number }}">
+                 <button  type="button" class="btn info btn-default btn-sm">
+                 <span class="glyphicon glyphicon-earphone"> CALL</span></button>
+                 </a>
+
+          {% if user.profile.close == False %}
+          <a style="float: right; padding-right: 10px;">
+          <button  type="button" class="btn btn-default info btn-sm">OPEN</button>
+          </a>
+          {% else %}
+          <a style="float: right; padding-right: 10px;">
+          <button  type="button" class="btn btn-default danger btn-sm">CLOSED</button>
+          </a>
+          {% endif %}
+                 </br></br><hr>
+
+
+    {% for post in active_post %}
+
+          <div class="panel panel-outline" style="border-color: #00b26f;">
+          <div class="panel-heading">
+          <span class="text-left"> <dt><strong> {{ post.menu }} <span class="label label-success">Live menu</span> </strong></dt>
+          </div><hr>
+          <div class="panle-body">
+                 <div class="a"> <!-- buttons start here -->
+
+                <button type="button" class="btn success btn-default btn-sm">
+                 <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
+
+                 <a href="#">
+                 <button  type="button" class="btn btn-default info btn-sm">
+                 <span class="glyphicon glyphicon-share"></span></button>
+                 </a>
+
+                 </div>
+          </div>
+          </div><br>
+    {% endfor %}
+
+          <div class="panel panel-outline">
+          <div class="panel-heading">
+
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d922.9066417459543!2d73.23007136724617!3d22.292131383749055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc5778cad6949%3A0x586f9d9dc49e5ce4!2sSurbhi+Park+Society!5e0!3m2!1sen!2sin!4v1559045671411!5m2!1sen!2sin" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+          </div>
+          </div>
+
+
+
+</div>   
 {% endblock content %}

@@ -48,9 +48,10 @@ def mymess(request, username):
 		context = locals()
 		return render(request, 'users/mymess.html', context)
 
-
 def mess_profile(request, username):
 	user = User.objects.get(username=username)
+	active_post = Post.objects.filter(author=user).filter(active=True)
+	posts = Post.objects.filter(author=user).filter(active=False)
 	context = locals()
 	return render(request, 'users/mess_profile.html', context)
 
