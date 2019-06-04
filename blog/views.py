@@ -118,25 +118,6 @@ def menulist(request):
 	context = locals()
 	return render(request, 'blog/home.html', context)
 
-@login_required
-def add_menu(request):
-	if request.method == "POST":
-		form = AddMenuForm(request.POST)
-		if form.is_valid():
-			posts = Post.objects.filter(author=request.user)
-			for i in posts:
-					i.active = False
-					i.save()
-			menu = form.save(commit=False)
-			menu.author = request.user
-			menu.save()
-			messages.success(request, f'MENU ADDED')
-			return redirect('mymess', username=request.user)
-	else:
-		form = AddMenuForm()
-		return render(request, 'users/mymess.html', {'form': form})
-
-
 
 clean_menu = ['Sev tamatar, dudhi chana, roti, dal, rice, buttermilk, salad', 'Pani puri Baingan Bharta sev tameta  Dal Gujarati dal Punjabi rice roti buttermilk and green slat', 'DRY FRUIT KHEER, BATAKAWADA, MATAR PANEER, DAL RICE, PURI, RAMKADA', 'Pani puri, sev tameta, ringan oro, bajri, rotla, tava roti, dal rice, salad, chhas', 'BATAKA VATANA TAMETA, VATANA, roti, dal-rice, salad, chhas', 'Pani puri, Baingan Bharta, sev tameta , Dal Gujarati, dal Punjabi, rice, roti, buttermilk and green slat', 'BHINDA ALU FRY, MUG, ROTI, DAL, RICE, BUTTERMILK, SALAD', 'PAVBHAJI, MASALA RICE, Masala Onion, Garlic CHATNI', 'RINGAN BATETA,  DEAHIVAL, roti, dal-rice, salad, chhas', 'CHOLE CHANA, SUKI BHAJI, BHATURE, ROTI, DAL, RICE, BUTTERMILK, SALAD', 'Live Manchurian noodle, pav bhaji, dal fry, jeera rice, limbu, chhas, ramkda', 'LIVE DHOKALA, MATAR PANEER, roti, dal-rice, salad, chhas', 'Bhakhri, bataka vatana tamata, masur, tikhari, roti, dal, rice, buttermilk, salad']
 def autocomplete(request):

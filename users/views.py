@@ -5,6 +5,7 @@ from blog.models import Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from blog.forms import AddMenuForm
 
 def register(request):
 	if request.method == 'POST':
@@ -41,6 +42,22 @@ def edit_profile(request, username):
 
 @login_required
 def mymess(request, username):
+	user=request.user
+	if user.is_authenticated:
+		if request.method == "POST":
+			form = AddMenuForm(request.POST)
+			if form.is_valid():
+				posts = Post.objects.filter(author=request.user)
+				for i in posts:
+						i.active = False
+						i.save()
+				menu = form.save(commit=False)
+				menu.author = request.user
+				menu.save()
+				messages.success(request, f'MENU ADDED')
+				return redirect('mymess', username=request.user)
+		else:
+			form = AddMenuForm()
 	user = User.objects.get(username=username)
 	active_post = Post.objects.filter(author=request.user).filter(active=True)
 	posts = Post.objects.filter(author=request.user).filter(active=False)
