@@ -17,7 +17,7 @@ def register(request):
 			user = authenticate(username=username, password=raw_password)
 			login(request, user)
 			messages.success(request, f'ACCOUNT CREATED FOR {username}!')
-			return redirect('mymess', username=username)
+			return redirect('edit_profile', username=username)
 	else:
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form':form})

@@ -13,7 +13,7 @@
                {% else %}
                <span class="glyphicon glyphicon-ok-circle" style="color: #00b26f;"></span>
                {% endif %}
-             
+
                {% if user.profile.close == False %}
                <a style="float: right; padding-right: 10px;" href="{% url 'close_mess' user.username %}">
                <button  type="button" class="btn btn-default danger btn-sm">Close Mess</button>
@@ -28,7 +28,7 @@
           </dt>
         </div>
       </div></br><hr><br>
-
+ 
 
     {% for post in active_post %}
           <div class="panel panel-outline" style="border-color: #00b26f;">
@@ -65,8 +65,7 @@
                    <fieldset>
                    {{ form|crispy }}
                    </fieldset>
-                   <button class="btn btn-info" type="submit">Add</button>
-                   <a class="btn btn-info" href="{% url 'mymess' user.username %}">Cancel</a>
+                   <button class="btn info btn-default" type="submit">ADD MENU</button>
                    </form>  
               </div>
               </div>

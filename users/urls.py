@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('register/', user_views.register, name='register'),
+    path('add_new_mess@123/', user_views.register, name='register'),
     path('edit_profile/<username>/', user_views.edit_profile, name='edit_profile'),
     path('mess_profile/<username>/', user_views.mess_profile, name='mess_profile'),
     path('mymess/<username>/', user_views.mymess, name='mymess'),

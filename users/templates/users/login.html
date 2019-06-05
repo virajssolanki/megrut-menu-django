@@ -10,15 +10,19 @@
    	  	 	{{ form|crispy }}
    	  	 </fieldset>
    	  	 <div class="form-group">
-   	  	 	<button class="btn btn-info" type="submit">Log In</button>
-            <small class="text-muted" ml-2>
-               <a href="{% url 'password_reset' %}">Forget Password?</a>
-            </small>
+   	  	 	<button class="btn info btn-default" type="submit">Log In</button>
    	  	 </div>
    	  </form>
    	  <div class="border-top pt-3">
-   	  	<small class="text-muted">Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
-   	  	</small>
+            <small class="text-muted" ml-2>Forget Password?
+               <a href="{% url 'password_reset' %}"> click here</a>
+            </small><br>
+   	    	<small class="text-muted">Need an account? 
+               <a class="ml-2" href="https://api.whatsapp.com/send?phone=919377780984&text=I%20would%20like%20to%20open%20an%20account%20on%20MEGRUT.">Click here</a>
+            </small><br>
+            <small class="text-muted">Need any help?
+               <a class="ml-2" href="tel:7046717674">CALL US</a>
+            </small>
    	  </div>
    </div>
 </div>
