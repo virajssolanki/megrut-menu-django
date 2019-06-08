@@ -31,6 +31,7 @@
  
 
     {% for post in active_post %}
+          {% if post.author.profile.close == False %}
           <div class="panel panel-outline" style="border-color: #00b26f;">
           <div class="panel-heading">
           <span class="text-left"> <dt><strong> {{ post.menu }} <span class="label label-success">Live menu</span> </strong></dt>
@@ -54,7 +55,18 @@
                  </a>
                  </div>
           </div>
-          </div><br><hr>
+          </div>
+          {% else %}
+                <div class="panel panel-outline" style="border-color: #00b26f;">
+                <div class="panel-heading">
+                <a href="{% url 'open_mess' user.username %}">
+                <button type="button" class="btn danger btn-default btn-sm" >
+                <span class="glyphicon glyphicon-remove-sign"> MESS IS CLOSED</span>
+                </button>
+                </a>
+                </div>
+                </div>           
+          {% endif %}<br><hr>
     {% endfor %}
 
     {% if form %}

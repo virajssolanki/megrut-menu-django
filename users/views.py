@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from blog.models import Post
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
@@ -40,6 +41,7 @@ def edit_profile(request, username):
 	context = locals()
 	return render(request, 'users/edit_profile.html', context)
 
+
 @login_required
 def mymess(request, username):
 	user=request.user
@@ -50,8 +52,13 @@ def mymess(request, username):
 				posts = Post.objects.filter(author=request.user)
 				for i in posts:
 						i.active = False
+						i.session = 'old'
 						i.save()
 				menu = form.save(commit=False)
+				if timezone.now().hour > 14:
+					menu.session = 'dinner'
+				else:
+					menu.session = 'lunch'
 				menu.author = request.user
 				menu.save()
 				messages.success(request, f'MENU ADDED')

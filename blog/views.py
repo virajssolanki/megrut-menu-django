@@ -8,18 +8,6 @@ from django.contrib import messages
 from django.contrib.messages import constants as message_constants
 from .forms import AddMenuForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import (
-									 LoginRequiredMixin, 
-									 UserPassesTestMixin,
-
-									 )
-from django.views.generic import (
-									ListView, 
-									DetailView, 
-									CreateView, 
-									UpdateView,
-									DeleteView
-									)
 MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
 									message_constants.INFO: 'info',
 									message_constants.SUCCESS: 'success',
@@ -87,9 +75,14 @@ def activate(request, pk):
 	posts = Post.objects.filter(author=request.user)
 	for i in posts:
 		i.active = False
+		i.session = 'old'
 		i.save()
 	post.active = True
 	post.date_posted = timezone.now()
+	if timezone.now().hour > 14:
+		post.session = 'dinner'
+	else:
+		post.session = 'lunch'
 	post.save()
 	messages.success(request, f'MENU IS NOW LIVE')
 	context = locals()
@@ -120,7 +113,7 @@ def menulist(request):
 			form = AddMenuForm()
 
 	posts = Post.objects.order_by('-date_posted')
-	if timezone.now().hour > 19:
+	if timezone.now().hour > 14:
 		session = 'dinner'
 	else:
 		session = 'lunch'
