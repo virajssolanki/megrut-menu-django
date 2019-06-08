@@ -26,6 +26,7 @@
 
   </head>
   <body>
+    {% if user.is_authenticated %}
   	<header class="site-header">
       <nav class="navbar navbar-default">
         <div class="container">
@@ -54,11 +55,10 @@
                 </ul>
             </div>
         </div>
-    </nav>
-
-
+      </nav>
     </header>
-
+    {% endif %}
+<br>
     <main role="main" class="container">
       <div class="row">
           <div class="container">

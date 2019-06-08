@@ -44,12 +44,14 @@ def add_menu(request):
 					i.active = False
 					i.save()
 			menu = form.save(commit=False)
+			menu.session = 'khana'
 			menu.author = request.user
 			menu.save()
 			messages.success(request, f'MENU ADDED')
 			return redirect('mymess', username=request.user)
 	else:
 		form = AddMenuForm()
+		context = locals()
 		return render(request, 'users/mymess.html', {'form': form})
 
 
@@ -66,6 +68,10 @@ def update_menu(request, pk):
 			menu = form.save(commit=False)
 			menu.active = True
 			menu.date_posted = timezone.now()
+			if timezone.now().hour > 14:
+				menu.session = 'dinner'
+			else:
+				menu.session = 'lunch'
 			menu.save()
 			messages.success(request, f'MENU UPDATED')
 			return redirect('mymess', username=request.user)
@@ -99,22 +105,25 @@ def menulist(request):
 				posts = Post.objects.filter(author=request.user)
 				for i in posts:
 						i.active = False
+						i.session = 'old'
 						i.save()
 				menu = form.save(commit=False)
 				menu.author = request.user
+				if timezone.now().hour > 14:
+					menu.session = 'dinner'
+				else:
+					menu.session = 'lunch'
 				menu.save()
 				messages.success(request, f'MENU ADDED')
 				return redirect('mymess', username=request.user)
 		else:
 			form = AddMenuForm()
-	nomenu_users = []
-	users = User.objects.all()
-	for i in users:
-		menu = Post.objects.filter(author=i).first()
-		if menu is None:
-			nomenu_users.append(i)
 
-	posts = Post.objects.filter(active=True).order_by('-date_posted')
+	posts = Post.objects.order_by('-date_posted')
+	if timezone.now().hour > 19:
+		session = 'dinner'
+	else:
+		session = 'lunch'
 	context = locals()
 	return render(request, 'blog/home.html', context)
 
