@@ -26,7 +26,7 @@
 
   </head>
   <body>
-    {% if user.is_authenticated %}
+    {% if request.user.is_authenticated %}
   	<header class="site-header">
       <nav class="navbar navbar-default">
         <div class="container">
@@ -40,12 +40,10 @@
                 <a class="navbar-brand" href="{% url 'blog-home' %}">Megrut</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% if user.is_authenticated %}
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'mymess' request.user %}">menu</a></li>
                     <!--<li><a href="{% url 'mess_profile' user.username %}">profile</a></li>-->  
                 </ul>
-                {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     {% if not user.is_authenticated %}
                     <li><a href="{% url 'login' %}">Login</a></li>

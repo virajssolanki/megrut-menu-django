@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 import json
 from django.http import HttpResponse
 from .models import Post
+from datetime import timedelta
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib import messages
@@ -112,7 +113,11 @@ def menulist(request):
 		else:
 			form = AddMenuForm()
 
-	posts = Post.objects.order_by('-date_posted')
+	posts = Post.objects.filter(active=True).order_by('-date_posted')
+	for i in posts:
+		if i.date_posted < timezone.now()-timedelta(hours=12):
+			i.session = 'old'
+			i.save()
 	if timezone.now().hour > 14:
 		session = 'dinner'
 	else:

@@ -32,30 +32,42 @@
 
     {% for post in active_post %}
           {% if post.author.profile.close == False %}
-          <div class="panel panel-outline" style="border-color: #00b26f;">
-          <div class="panel-heading">
-          <span class="text-left"> <dt><strong> {{ post.menu }} <span class="label label-success">Live menu</span> </strong></dt>
-          </div><hr>
-          <div class="panle-body">
-                 <div class="a"> <!-- buttons start here -->
+                  {% if session == post.session %}
+                  <div class="panel panel-outline" style="border-color: #00b26f;">
+                  <div class="panel-heading">
+                  <span class="text-left"> <dt><strong> {{ post.menu }} <span class="label label-success">Live menu</span> </strong></dt>
+                  </div><hr>
+                  <div class="panle-body">
+                         <div class="a"> <!-- buttons start here -->
 
-                 <a href="{% url 'post-update' post.id %}">
-                 <button  type="button" class="btn btn-default success btn-sm"> 
-                 <span class="glyphicon glyphicon-pencil"></span></button>
-                 </a>
+                         <a href="{% url 'post-update' post.id %}">
+                         <button  type="button" class="btn btn-default success btn-sm"> 
+                         <span class="glyphicon glyphicon-pencil"></span></button>
+                         </a>
 
-                 <a href="#">
-                 <button  type="button" class="btn btn-default info btn-sm">
-                 <span class="glyphicon glyphicon-share"></span></button>
-                 </a>
+                         <a href="#">
+                         <button  type="button" class="btn btn-default info btn-sm">
+                         <span class="glyphicon glyphicon-share"></span></button>
+                         </a>
 
-                 <a style="float: right; padding-right: 10px;" href="#">
-                 <button class="btn btn-default btn-sm disabled">
-                 <span class="glyphicon glyphicon-trash"></span></button>
-                 </a>
-                 </div>
-          </div>
-          </div>
+                         <a style="float: right; padding-right: 10px;" href="#">
+                         <button class="btn btn-default btn-sm disabled">
+                         <span class="glyphicon glyphicon-trash"></span></button>
+                         </a>
+                         </div>
+                  </div>
+                  </div>
+                  {% else %}
+                    <div class="panel panel-outline" style="border-color: #00b26f;">
+                    <div class="panel-heading">
+                    <a href="#">
+                    <button type="button" class="btn danger btn-default btn-sm" >
+                    <span class="glyphicon glyphicon-remove-sign"> NO MENU IS LIVE </span>
+                    </button>
+                    </a>
+                    </div>
+                    </div>
+                  {% endif %}
           {% else %}
                 <div class="panel panel-outline" style="border-color: #00b26f;">
                 <div class="panel-heading">

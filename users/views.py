@@ -68,6 +68,10 @@ def mymess(request, username):
 	user = User.objects.get(username=username)
 	active_post = Post.objects.filter(author=request.user).filter(active=True)
 	posts = Post.objects.filter(author=request.user).filter(active=False)
+	if timezone.now().hour > 14:
+		session = 'dinner'
+	else:
+		session = 'lunch'
 	if request.user == user:
 		context = locals()
 		return render(request, 'users/mymess.html', context)
@@ -76,6 +80,10 @@ def mess_profile(request, username):
 	user = User.objects.get(username=username)
 	active_post = Post.objects.filter(author=user).filter(active=True)
 	posts = Post.objects.filter(author=user).filter(active=False)
+	if timezone.now().hour > 14:
+		session = 'dinner'
+	else:
+		session = 'lunch'
 	context = locals()
 	return render(request, 'users/mess_profile.html', context)
 
