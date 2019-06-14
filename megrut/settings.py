@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['first-django-blog.herokuapp.com']
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'order.apps.OrderConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
