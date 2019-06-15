@@ -20,7 +20,7 @@
 
           <div class="panel panel-outline">
           <div class="panel-heading">
-          <span class="text-left"> <dt><strong><a href="{% url 'mess_profile' post.author.username %}"> {{ post.author.username }}</a></strong></dt>
+          <span class="text-left"> <dt><strong><a href="{% url 'mess_profile' post.author.username %}"> {{ post.author.profile.mess_name }}</a></strong></dt>
           <dd><small>Updated : {{ post.date_posted|timesince }} ago</small></dd></span>
           </div><hr>
           <div class="panle-body">
