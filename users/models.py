@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 #from PIL import Image 
 
 CITY_CHOICES = (
-    ('BARODA','BARODA'),
+    ('VADODARA','VADODARA'),
     ('AHEMDAVAD', 'AHEMDAVAD'),
     ('VIDHYANAGAR','VIDHYANAGAR'),
 )

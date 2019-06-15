@@ -1,15 +1,18 @@
 body{
     background-color: #f3f3f3;
   }
+  
   .panel-heading{
     background-color: ;
  
   }
+
   .panel{
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
+
   .panel-body{
     background-color: #fc4q1a;
   }
@@ -17,17 +20,25 @@ body{
   hr{
     margin: 1px 13px 9px 13px;
   }
+
   .menulist{
     margin: 0px 0px 0px -23px;
   }
+
   p {
     margin: 1px 0px 9px 13px;
     font-size: 15px;
     color: #333;
   }
+
   strong{
     color: #0F2362;
   }
+
+  b{
+    color: #333;
+  }
+
   div.a{
     margin: 1px 0px 9px 13px;
   }
@@ -35,6 +46,7 @@ body{
   button.btn btn-outline{
     margin: 1px 0px 9px 13px;
   }
+
 .info {
   border-color: #2196F3;
   color: dodgerblue
@@ -64,10 +76,12 @@ body{
   background: #00b26f;
   color: white;
 } 
+
 .button 
   { 
     background-color: #4CAF50;
   }
+
 .navbar {
       background-color: #00b26f !important;
       border: 0;
@@ -77,11 +91,13 @@ body{
       border-radius: 0;
       font-family: Montserrat, sans-serif;
   }
+
 .navbar li a, .navbar {
     background-color: #00b26f !important;
     color: #fff !important;
     font-size: 16px !important;
 }
+
 .navbar-brand{
     font-family: 'Muli', sans-serif !important;
       color: #fff !important;
@@ -98,7 +114,3 @@ body{
       color: #oobf6f !important;
       border: 0;
   }
-
-.glyphicon-ok-circle {
-  
-}
