@@ -60,6 +60,7 @@ def mymess(request, username):
 				else:
 					menu.session = 'lunch'
 				menu.author = request.user
+				menu.city = request.user.profile.city
 				menu.save()
 				messages.success(request, f'MENU ADDED')
 				return redirect('mymess', username=request.user)

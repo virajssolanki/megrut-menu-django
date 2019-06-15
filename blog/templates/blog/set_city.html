@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+  
+                <div class="panel panel-outline">
+                <div class="panel-heading">
+                  <h4>PLEASE SELECT YOUR CITY</h4>
+                </div>
+                </div> 
+
+                <div class="panel panel-outline">
+                <div class="panel-heading">
+                        <a href="{% url 'set_city' 'VADODARA' %}">
+                        <button type="button" class="btn info btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-ok-circle"> VADODARA</span>
+                        </button>
+                        </a><br><br>
+
+                        <a href="{% url 'set_city' 'AHEMDAVAD' %}">
+                        <button type="button" class="btn info btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-ok-circle"> AHEMDAVAD</span>
+                        </button>
+                        </a><br><br>
+
+                        <a href="{% url 'set_city' 'VIDHYANAGAR' %}">
+                        <button type="button" class="btn info btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-ok-circle"> VIDHYANAGAR</span>
+                        </button>
+                        </a>
+                </div>
+                </div> 
+
+</div>
+{% endblock content %}

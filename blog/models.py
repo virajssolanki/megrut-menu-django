@@ -12,6 +12,7 @@ PRICE_CHOICES = (
     ('60','60'),
     ('70','70'),
     ('80','80'),
+    ('90','90'),
 )
 
 class Post(models.Model):
@@ -20,6 +21,7 @@ class Post(models.Model):
 	session = models.CharField(max_length=10, blank=True)
 	price = models.CharField(max_length=3,choices=PRICE_CHOICES, default='40')
 	active = models.BooleanField(default=True)
+	city = models.CharField(max_length=40,default='VADODARA')
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def __str__(self):

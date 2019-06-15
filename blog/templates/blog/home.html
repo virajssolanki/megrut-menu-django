@@ -70,7 +70,63 @@
           </div>
           </div>
      </div>
+
+
     {% endif %}
     {% endfor %}
+    
+<div class="container">
+
+                <div class="panel panel-outline">
+                <div class="panel-heading">
+                       <button  type="button" class="btn success btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                       <span class="glyphicon glyphicon-send"> CHANGE DEFAULT CITY </span></button>
+                </div>
+                </div> 
+
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+                  
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">SELECT CITY</h4>
+                      </div>
+
+                      <div class="modal-body">
+
+
+                        <a href="{% url 'set_city' 'VADODARA' %}">
+                        <button type="button" class="btn info btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-ok-circle"> VADODARA</span>
+                        </button>
+                        </a><br><br>
+
+                        <a href="{% url 'set_city' 'AHEMDAVAD' %}">
+                        <button type="button" class="btn info btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-ok-circle"> AHEMDAVAD</span>
+                        </button>
+                        </a><br><br>
+
+                        <a href="{% url 'set_city' 'VIDHYANAGAR' %}">
+                        <button type="button" class="btn info btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-ok-circle"> VIDHYANAGAR</span>
+                        </button>
+                        </a><br><br>
+
+
+
+                       </div>
+
+                       <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                       </div>
+                    </div>
+                    
+                  </div>
+                </div>
+</div>
+
 
 {% endblock content %}
+

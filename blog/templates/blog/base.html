@@ -17,6 +17,13 @@
     
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     
+    <script type="text/javascript" language="JavaScript">
+    if( document.cookie.indexOf("city=") === 'baroda') {
+        alert("Cookie not found, redirecting you.");
+    }
+    </script>
+
+
     {% if title %}
 	   <title>megrut-{{ title }}</title>
 	  {% else %}

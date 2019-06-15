@@ -1,7 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from PIL import Image 
+#from PIL import Image 
+
+CITY_CHOICES = (
+    ('BARODA','BARODA'),
+    ('AHEMDAVAD', 'AHEMDAVAD'),
+    ('VIDHYANAGAR','VIDHYANAGAR'),
+)
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -9,7 +15,7 @@ class Profile(models.Model):
 	mess_name = models.CharField(max_length=20, blank=True)
 	number = models.CharField(max_length=10, blank=True)
 	location = models.URLField(max_length=300, blank=True)
-	city = models.CharField(max_length=40, blank=True)
+	city = models.CharField(max_length=40,choices=CITY_CHOICES, default='VADODARA')
 	close = models.BooleanField(default=False)
 
 	def __str__(self):

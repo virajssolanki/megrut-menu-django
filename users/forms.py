@@ -19,11 +19,16 @@ class UserUpdateForm(forms.ModelForm):
 		fields = ['username', 'email']
 
 class ProfileUpdateForm(forms.ModelForm):
-	location = forms.URLField(required=False)
-	close = forms.BooleanField(required=False)
-	mess_name = forms.CharField(required=False)
-	number = forms.CharField(required=False)
+	location = forms.URLField(required=True)
+	close = forms.BooleanField(required=True)
+	mess_name = forms.CharField(required=True)
+	number = forms.CharField(required=True)
 
 	class Meta:
 		model = Profile
-		fields = ['location', 'close', 'mess_name']
+		fields = ['location', 'close', 'mess_name', 'city']
+
+	def __init__(self, *args, **kwargs):
+		super(ProfileUpdateForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
+		self.fields['city'].widget.attrs['cols'] = 5
+		self.fields['city'].widget.attrs['rows'] = 5

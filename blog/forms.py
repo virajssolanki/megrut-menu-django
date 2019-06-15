@@ -1,15 +1,6 @@
 from django import forms
 from .models import Post
 
-PRICE_CHOICES = (
-    ('40','40'),
-    ('45', '45'),
-    ('50','50'),
-    ('55','55'),
-    ('60','60'),
-    ('70','70'),
-    ('80','80'),
-)
 
 class AddMenuForm(forms.ModelForm):
 
