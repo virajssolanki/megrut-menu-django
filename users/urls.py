@@ -12,7 +12,7 @@ urlpatterns = [
     path('mymess/<username>/', user_views.mymess, name='mymess'),
     path('close_mess/<username>/', user_views.close_mess, name='close_mess'),
     path('open_mess/<username>/', user_views.open_mess, name='open_mess'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True, template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='blog/home.html'), name='logout'),
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
