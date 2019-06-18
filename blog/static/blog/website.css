@@ -1,0 +1,190 @@
+
+/*footer*/
+  #footer{
+  width: 100%;
+  position: absolute;
+  height: 145px;
+  background-color: #EDF7FE;
+  }
+
+  #pf{
+  font-family:'Muli', sans-serif;
+  font-weight: 600;
+  font-color: #0D2366;
+  font-size: 15px;
+  margin: 20px 10px 10px 10px;
+  }
+  
+  .fa {
+  padding: 10px;
+  font-size: 20px;
+  
+  text-align: center;
+  text-decoration: none;
+  margin: 15px 10px 0px 10px;
+  /*
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  margin: 5px 5px ; */
+  }
+  .fa:hover {
+  opacity: 0.7;
+  }
+  
+  /* Set a specific color for each brand */
+  
+  /* Facebook */
+  .fa-facebook {
+  background:#3B5998 ;
+  color: white;
+  width:45px;
+  border-radius:60px;
+  }
+  
+  /* insta */
+  .fa-instagram {
+  background:#125688 ;
+  color: white;
+  width: 45px;
+  border-radius: 60px;
+  } 
+
+#grad{
+background:#EDF7FE;
+}
+
+ .icon{
+ float:left;
+ }
+
+ .row{
+ display: flex;
+ margin: 0px 10px 0px 0px
+ }
+
+ .column{
+ flex: 50%;
+ padding: 10px;
+ margin: 0px 10px 0px 20px;
+ }
+
+.icon2{
+float: center;
+margin: 10px 0px 0px 0px;
+}
+  
+.lines{
+    font-size: 16px;
+    font-weight: 400;
+    color: #7B8199;
+    margin: 1px 20px 10px 20px;
+  }
+
+
+
+.hr {
+     width: 10%;
+     border-top: 3px solid #49DAB5;
+     margin-top: 1em;
+     margin-bottom: 1em;
+}
+
+  
+#heading{
+    font-family: 'Muli', sans-serif;
+    font-weight: 800;
+    color:  #fff;
+  }	
+
+.info:hover {
+    background: #00bf6f;
+    color: white;
+}
+
+.icon-bar{ background-color: #fff !important;}
+.navbar {
+      margin-bottom: 0;
+      background-color: #00b26f !important;
+      border: 0;
+      font-size: 16px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+
+.navbar li a, .navbar {
+    background-color: #00b26f !important;
+    color: #fff !important;
+    font-size: 16px !important;
+}
+
+.navbar-brand{
+	  font-family: 'Muli', sans-serif !important;
+      color: #fff !important;
+      font-size: 21px !important;
+}
+
+  
+.navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #00bf6f !important;
+      background-color: #fff !important;
+  }
+
+.navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #oobf6f !important;
+      border: 0;
+  }
+
+.well{
+  background: #fff;
+}
+
+
+#stripes {
+  background: #00b26f;
+}
+
+
+.head{
+margin: 33px 100px 0 0;
+font-size: 75px;
+line-height: 130%;
+}
+
+.btn {
+    Font-family:'Muli', sans-serif;
+    font-weight: 1000;
+    background-color: #fff;
+    color: #00bf6f;
+    padding: 12px 24px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+@media (max-width: 767px){
+  .mainimg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .head{
+  margin: 33px 100px 0 0;
+  font-size: 24px;
+  line-height: 100%;
+    }
+.btn {
+    Font-family:'Muli', sans-serif;
+    font-weight: 600;
+    background-color: #fff;
+    color: #00bf6f;
+    padding: 8px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+  }

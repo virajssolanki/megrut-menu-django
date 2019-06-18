@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+   <meta charset="utf-8">
+   <title>Flask Parent Template</title>
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'blog/website.css' %}">
+   <link rel="shortcut icon" href="{% static 'blog/megrut.ico' %}"/>
+ </style>
+{% static 'website/template.css' %}
+
+
+</head>
+   
+<body>
+   
+    <main>
+    <header>
+      <div class="container">
+        <strong>
+         <nav class="navbar navbar-default navbar-fixed-top" id="drp">
+          <div class="container-fluid">
+           <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="{% url 'website' %}">Megrut</a>
+            </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+              <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+          </ul> 
+          </div>
+          </div>
+          </nav>
+        </strong>
+      </div>
+     </header>
+     </main>
+    {% block content %}
+    {% endblock %}
+</body>
+<footer>  
+<div id="footer">
+<div class="container">
+<center>
+<p id="pf" style="color:#0D2366"> © Copyright 2018 <a href="http://www.megrut.xyz" >Megrut Studio</a></p>
+<a href="http://bit.ly/2pXKBUj"><img claas="icon" src="https://image.ibb.co/gBrr5f/iconmonstr-facebook-4-240.png" alt="iconmonstr-facebook-4-240" border="0" width="40px" ></a>
+<a href="https://www.instagram.com/megrut_app/"><img class="icon2" src="https://image.ibb.co/j0qjQf/iconmonstr-instagram-14-240.png" alt="iconmonstr-instagram-14-240" border="0" width="40px"></a>
+</center>
+</div>
+</div>
+</footer>
+</html>
