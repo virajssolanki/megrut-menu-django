@@ -114,11 +114,11 @@ def menulist(request):
 		else:
 			form = AddMenuForm()
 
-	if not request.COOKIES.get('city'):
-		return render(request, 'blog/set_city.html')
-	else:
-		city = request.COOKIES.get('city')
-		posts = Post.objects.filter(active=True, city=city).order_by('-date_posted')
+#	if not request.COOKIES.get('city'):
+#		return render(request, 'blog/set_city.html')
+#	else:
+#		city = request.COOKIES.get('city')
+		posts = Post.objects.filter(active=True).order_by('-date_posted')
 		for i in posts:
 			if i.date_posted < timezone.now()-timedelta(hours=12):
 				i.session = 'old'
