@@ -118,17 +118,17 @@ def menulist(request):
 #		return render(request, 'blog/set_city.html')
 #	else:
 #		city = request.COOKIES.get('city')
-		posts = Post.objects.filter(active=True).order_by('-date_posted')
-		for i in posts:
-			if i.date_posted < timezone.now()-timedelta(hours=12):
-				i.session = 'old'
-				i.save()
-		if timezone.now().hour > 14:
-			session = 'dinner'
-		else:
-			session = 'lunch'
-		context = locals()
-		return render(request, 'blog/home.html', context)
+	posts = Post.objects.filter(active=True).order_by('-date_posted')
+	for i in posts:
+		if i.date_posted < timezone.now()-timedelta(hours=12):
+			i.session = 'old'
+			i.save()
+	if timezone.now().hour > 14:
+		session = 'dinner'
+	else:
+		session = 'lunch'
+	context = locals()
+	return render(request, 'blog/home.html', context)
 
 
 clean_menu = ['Sev tamatar, dudhi chana, roti, dal, rice, buttermilk, salad', 'Pani puri Baingan Bharta sev tameta  Dal Gujarati dal Punjabi rice roti buttermilk and green slat', 'DRY FRUIT KHEER, BATAKAWADA, MATAR PANEER, DAL RICE, PURI, RAMKADA', 'Pani puri, sev tameta, ringan oro, bajri, rotla, tava roti, dal rice, salad, chhas', 'BATAKA VATANA TAMETA, VATANA, roti, dal-rice, salad, chhas', 'Pani puri, Baingan Bharta, sev tameta , Dal Gujarati, dal Punjabi, rice, roti, buttermilk and green slat', 'BHINDA ALU FRY, MUG, ROTI, DAL, RICE, BUTTERMILK, SALAD', 'PAVBHAJI, MASALA RICE, Masala Onion, Garlic CHATNI', 'RINGAN BATETA,  DEAHIVAL, roti, dal-rice, salad, chhas', 'CHOLE CHANA, SUKI BHAJI, BHATURE, ROTI, DAL, RICE, BUTTERMILK, SALAD', 'Live Manchurian noodle, pav bhaji, dal fry, jeera rice, limbu, chhas, ramkda', 'LIVE DHOKALA, MATAR PANEER, roti, dal-rice, salad, chhas', 'Bhakhri, bataka vatana tamata, masur, tikhari, roti, dal, rice, buttermilk, salad']
