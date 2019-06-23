@@ -7,3 +7,10 @@ class Number(models.Model):
 
 	def __str__(self):
 		return self.number
+
+class Bugs(models.Model):
+	date_posted = models.DateTimeField(default=timezone.now)
+	bugs = models.TextField(max_length=150)
+
+	def __str__(self):
+		return self.bugs

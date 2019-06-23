@@ -15,6 +15,7 @@ def order_home(request):
 	else:
 		form = AddNumberForm()
 	return render(request, 'order/order_home.html', {'form':form})
+	
 @login_required
 def numbers(request):
 	numbers = Number.objects.all()
