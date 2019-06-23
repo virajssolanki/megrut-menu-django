@@ -15,6 +15,6 @@ class ReportBugForm(forms.ModelForm):
 		model = Bugs
 		fields = ['bugs']
 	def __init__(self, *args, **kwargs):
-		super(AddMenuForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
+		super(ReportBugForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
 		self.fields['bugs'].widget.attrs['cols'] = 5
 		self.fields['bugs'].widget.attrs['rows'] = 5

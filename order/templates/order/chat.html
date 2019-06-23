@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+       <div class="panel panel-outline">
+         <div class="panel-heading">
+               <a href="tel:7046717674">
+               <h3><span class="glyphicon glyphicon-earphone"> CALL US NOW</span></h3>
+               </a>
+         </div>
+        </div>
+    </div>
+    
+    {% if bug_form %}
+        <div class="container">
+              <div class="panel panel-outline">
+              <div class="panel-heading">
+                <h4><strong>REPORT A BUG</strong></h4>
+                   <form method="POST">
+                   {% csrf_token %}
+                   <fieldset>
+                   {{ bug_form|crispy }}
+                   </fieldset>
+                   <button class="btn info btn-default" type="submit">REPORT</button>
+                   </form>
+              </div>
+              </div>
+        </div>
+    {% endif %}
+
+{% endblock content %}
