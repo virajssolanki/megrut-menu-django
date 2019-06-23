@@ -1,8 +1,38 @@
 {% extends "blog/base.html" %}
 {% block content %}
         <div class="container">
-          {% for i in numbers %}
-          {{ i }}<br>
-          {% endfor %}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>DATE</th>
+                  <th>NUMBER</th>
+                </tr>
+              </thead>
+              {% for i in numbers %}
+                <tr>
+                  <td>{{ i.date_posted }}</td>
+                  <td>{{ i}}</td>
+                </tr>
+             {% endfor %}
+              </tbody>
+            </table>
         </div>
-{% endblock content %}
+
+        <div class="container">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>BUGS</th>
+              </tr>
+            </thead>
+            {% for i in bugs %}
+              <tr>
+                <td>{{ i.date_posted }}</td>
+                <td>{{ i }}</td>
+              </tr>
+           {% endfor %}
+            </tbody>
+          </table>
+        </div>
+{% endblock content %} 

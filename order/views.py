@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import AddNumberForm, ReportBugForm
-from .models import Number
+from .models import Number, Bugs
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -31,5 +31,7 @@ def feedback(request):
 
 @login_required
 def numbers(request):
-	numbers = Number.objects.all()
-	return render(request, 'order/numbers.html', {'numbers':numbers})
+	numbers = Number.objects.all().order_by('-date_posted')
+	bugs = Bugs.objects.all().order_by('-date_posted')
+	context = locals()
+	return render(request, 'order/numbers.html', context)
