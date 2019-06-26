@@ -48,13 +48,13 @@ def add_menu(request):
 def update_menu(request, pk):
 	post = Post.objects.get(id=pk)
 	if request.method == "POST":
-		form = AddMenuForm(request.POST, instance=post)
-		if form.is_valid():
+		umform = AddMenuForm(request.POST, instance=post)
+		if umform.is_valid():
 			posts = Post.objects.filter(author=request.user)
 			for i in posts:
 					i.active = False
 					i.save()
-			menu = form.save(commit=False)
+			menu = umform.save(commit=False)
 			menu.active = True
 			menu.date_posted = timezone.now()
 			if timezone.now().hour > 14:
@@ -65,7 +65,7 @@ def update_menu(request, pk):
 			messages.success(request, f'MENU UPDATED')
 			return redirect('mymess', username=request.user)
 	else:
-		form = AddMenuForm(instance=post)
+		umform = AddMenuForm(instance=post)
 		context = locals()
 		return render(request, 'users/mymess.html' , context)
 

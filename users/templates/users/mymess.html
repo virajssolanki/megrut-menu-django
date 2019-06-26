@@ -95,6 +95,21 @@
               </div>
     {% endif %} 
 
+    {% if umform %}
+              <div class="panel panel-outline">
+              <div class="panel-heading">
+                   <form method="POST">
+                   {% csrf_token %}
+                   <fieldset>
+                   {{ umform|crispy }}
+                   </fieldset>
+                   <button class="btn info btn-default" type="submit">UPDATE MENU</button>
+                   <a class="btn danger btn-default" href="{% url 'mymess' request.user %}">CANCEL</a>
+                   </form>  
+              </div>
+              </div>
+    {% endif %} 
+
     {% for post in posts %}
           <div class="panel panel-outline">
           <div class="panel-heading">
