@@ -68,7 +68,7 @@ def mymess(request, username):
 			form = AddMenuForm()
 	user = User.objects.get(username=username)
 	active_post = Post.objects.filter(author=request.user).filter(active=True)
-	posts = Post.objects.filter(author=request.user).filter(active=False)
+	posts = Post.objects.filter(author=request.user)
 	if timezone.now().hour > 14:
 		session = 'dinner'
 	else:
