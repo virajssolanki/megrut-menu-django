@@ -20,6 +20,12 @@ def order_home(request):
 def feedback(request):
 	return render(request, 'order/chat.html')
 
+def feedback_join(request):
+	return render(request, 'order/join.html')
+
+def feedback_res(request):
+	return render(request, 'order/res.html')
+
 
 @login_required
 def numbers(request):
