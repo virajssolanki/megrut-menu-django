@@ -46,7 +46,8 @@
 
           <div class="panel panel-outline">
           <div class="panel-heading">
-          <span class="text-left"> <dt><strong>{{ post.author.profile.mess_name }}</strong></dt>
+          <span class="text-left"> <dt><strong>{{ post.author.profile.mess_name }}</strong><small> ({{post.author.profile.area}})</small></dt>
+
           <dd><small>Updated : {{ post.date_posted|timesince }} ago</small></dd></span>
           </div><hr>
           <div class="panle-body">

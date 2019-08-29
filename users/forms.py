@@ -26,7 +26,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 	class Meta:
 		model = Profile
-		fields = ['location', 'close', 'mess_name', 'city', 'number']
+		fields = ['location', 'close', 'mess_name', 'city', 'area', 'number']
 
 	def __init__(self, *args, **kwargs):
 		super(ProfileUpdateForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
