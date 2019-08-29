@@ -12,6 +12,10 @@ CITY_CHOICES = (
 PIN_CHOICES = (
     ('Fateganj','Fateganj'),
     ('Nizampura', 'Nizampura'),
+    ('MS campus', 'MS campus'),
+    ('Sama', 'Sama'),
+    ('Amitnagar', 'Amitnagar'),
+    ('MS girls campus', 'MS girls campus'),
 )
 
 class Profile(models.Model):
