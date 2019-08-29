@@ -10,8 +10,8 @@ CITY_CHOICES = (
 )
 
 PIN_CHOICES = (
-    ('390002','Fateganj'),
-    ('390024', 'Nizampura'),
+    ('Fateganj','Fateganj'),
+    ('Nizampura', 'Nizampura'),
 )
 
 class Profile(models.Model):
