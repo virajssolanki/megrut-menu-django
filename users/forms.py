@@ -20,7 +20,7 @@ class UserUpdateForm(forms.ModelForm):
 
 class ProfileUpdateForm(forms.ModelForm):
 	location = forms.URLField(required=True)
-	close = forms.BooleanField(required=True)
+	close = forms.BooleanField(required=False)
 	mess_name = forms.CharField(required=True)
 	number = forms.CharField(required=True)
 
