@@ -12,6 +12,7 @@ CITY_CHOICES = (
 PIN_CHOICES = (
     ('Fateganj','Fateganj'),
     ('Nizampura', 'Nizampura'),
+    ('Waghodia road', 'Waghodia road'),
     ('MS campus', 'MS campus'),
     ('Sama', 'Sama'),
     ('Amitnagar', 'Amitnagar'),
