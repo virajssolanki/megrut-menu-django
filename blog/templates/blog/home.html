@@ -20,7 +20,7 @@
 
 <div class="panel-heading">
   <div class="alert alert-warning">
-    <b>New Update is available, <a href="https://play.google.com/store/apps/details?id=com.team_gilool.GiloolAPPCOPYSCREENS">Click here</a> </b>
+    <b>New Update is available, <a href="intent://https://play.google.com/store/apps/details?id=com.team_gilool.GiloolAPPCOPYSCREENS&hl=en_IN#Intent;scheme=http;package=com.android.chrome;end">Click here</a> </b>
     <br> Please update the app for a smooth experience.  <small><br>Ignore, if your have already updated.</small>
   </div>
 </div>
@@ -40,11 +40,11 @@
             {% if post.author.profile.close == False %}
                 {% if session == post.session %}
                 {% with menu=post.menu %}  
-
+    <!--  <div>
+          <img src="http://justdelhiing.com/wp-content/uploads/2017/02/gujarat-thali-Copy.jpg" alt="Lights" width="100%" style="padding: 0% 4% 3%;">
+      </div> -->
                        <ul style="list-style-type:None;">
-
                        <b><li class="menulist">{% filter force_escape|upper|linebreaksbr %}{{ menu }}{% endfilter %}</li></b>
-
                       </ul>
 
                 {% endwith %}
