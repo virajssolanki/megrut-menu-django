@@ -31,7 +31,7 @@
 <a href="whatsapp://send?text=Hello%20World!">whatsapp: Example - WhatsApp Message</a>
   </div>
  
-</div> -->
+</div>-->
 
 
     {% for post in posts %}
@@ -49,7 +49,7 @@
                 {% if session == post.session %}
                 {% with menu=post.menu %}  
     <!--  <div>
-          <img src="http://justdelhiing.com/wp-content/uploads/2017/02/gujarat-thali-Copy.jpg" alt="Lights" width="100%" style="padding: 0% 4% 3%;">
+          <img src="{{ post.author.profile.image.url }}" alt="Lights" width="100%" style="padding: 0% 4% 3%;">
       </div> -->
                        <ul style="list-style-type:None;">
                        <b><li class="menulist">{% filter force_escape|upper|linebreaksbr %}{{ menu }}{% endfilter %}</li></b>
