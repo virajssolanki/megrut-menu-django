@@ -104,7 +104,7 @@ def menulist(request):
 				menu = form.save(commit=False)
 				menu.author = request.user
 				menu.city = request.user.profile.city
-				menu.image = form.cleaned_data["image"]
+#				menu.image = form.cleaned_data["image"]
 				if timezone.now().hour > 14:
 					menu.session = 'dinner'
 				else:
