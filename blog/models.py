@@ -18,7 +18,8 @@ PRICE_CHOICES = (
 )
 
 class Post(models.Model):
-	menu = models.TextField(max_length=150)
+	menu = models.TextField(max_length=350)
+	image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 	date_posted = models.DateTimeField(default=timezone.now)
 	session = models.CharField(max_length=10, blank=True)
 	price = models.CharField(max_length=5,choices=PRICE_CHOICES, default='40')

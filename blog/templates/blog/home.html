@@ -48,9 +48,11 @@
             {% if post.author.profile.close == False %}
                 {% if session == post.session %}
                 {% with menu=post.menu %}  
-    <!--  <div>
-          <img src="{{ post.author.profile.image.url }}" alt="Lights" width="100%" style="padding: 0% 4% 3%;">
-      </div> -->
+  <!--   {% if post.image%}
+      <div>
+          <img src="{{ post.image.url }}" alt="Lights" width="100%" style="padding: 0% 4% 3%;">
+    </div>-->
+    {% endif %}
                        <ul style="list-style-type:None;">
                        <b><li class="menulist">{% filter force_escape|upper|linebreaksbr %}{{ menu }}{% endfilter %}</li></b>
                       </ul>

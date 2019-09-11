@@ -94,7 +94,7 @@ def menulist(request):
 	user=request.user
 	if user.is_authenticated:
 		if request.method == "POST":
-			form = AddMenuForm(request.POST)
+			form = AddMenuForm(request.POST, request.FILES)
 			if form.is_valid():
 				posts = Post.objects.filter(author=request.user)
 				for i in posts:
@@ -104,11 +104,13 @@ def menulist(request):
 				menu = form.save(commit=False)
 				menu.author = request.user
 				menu.city = request.user.profile.city
+				menu.image = form.cleaned_data["image"]
 				if timezone.now().hour > 14:
 					menu.session = 'dinner'
 				else:
 					menu.session = 'lunch'
 				menu.save()
+				saved = True
 				messages.success(request, f'MENU ADDED')
 				return redirect('mymess', username=request.user)
 		else:
