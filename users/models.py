@@ -28,6 +28,7 @@ class Profile(models.Model):
 	location = models.URLField(max_length=300, blank=True)
 	city = models.CharField(max_length=40,choices=CITY_CHOICES, default='VADODARA')
 	close = models.BooleanField(default=False)
+	follower = models.IntegerField(default=0)
 
 	def __str__(self):
 		return f'{self.user.username} Profile'

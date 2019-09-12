@@ -27,7 +27,15 @@
           </dt>
         </div>
       </div></br><hr><br>
- 
+
+
+                  <div class="panel panel-outline" style="border-color: #2196F3;">
+                  <div class="panel-heading">
+                  <span class="text-left"> <dt><strong><span class="label label-primary"> {{ user.profile.follower }}</span> </strong>People have add your restaurant to their watchlist </span></dt>
+                  </div>
+                  </div>
+
+
 
     {% for post in active_post %}
           {% if post.author.profile.close == False %}

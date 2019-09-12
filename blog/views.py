@@ -155,10 +155,18 @@ def pin(request, username):
 	response = redirect('blog-home')
 	response.set_cookie(username, 'pin', 3600 * 24 * 365 * 2)
 	messages.success(request,"Added to watchlist")
+	user = User.objects.get(username=username)
+	follower = user.profile.follower + 1
+	user.profile.follower = follower
+	user.save()
 	return response
 
 def unpin(request, username):   
 	response = redirect('blog-home')
 	response.delete_cookie(username)
 	messages.success(request,"Removed from watchlist")
+	user = User.objects.get(username=username)
+	follower = user.profile.follower - 1
+	user.profile.follower = follower
+	user.save()
 	return response
