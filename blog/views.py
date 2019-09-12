@@ -129,7 +129,14 @@ def menulist(request):
 		session = 'dinner'
 	else:
 		session = 'lunch'
-	context = locals()
+
+
+	pinlist = []
+
+	for i in posts:
+		if request.COOKIES.get(i.author.username):
+			pinlist.append(i)
+		context = locals()
 	return render(request, 'blog/home.html', context)
 
 
@@ -142,4 +149,16 @@ def set_city(request, cityname):
 	response = redirect('blog-home')
 	response.set_cookie('city', cityname, 3600 * 24 * 365 * 2)
 	messages.success(request,"YOUR DEFAULT CITY SET TO {}".format(cityname))
+	return response
+
+def pin(request, username):   
+	response = redirect('blog-home')
+	response.set_cookie(username, 'pin', 3600 * 24 * 365 * 2)
+	messages.success(request,"Added to watchlist")
+	return response
+
+def unpin(request, username):   
+	response = redirect('blog-home')
+	response.delete_cookie(username)
+	messages.success(request,"Removed from watchlist")
 	return response

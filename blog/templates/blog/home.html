@@ -14,7 +14,7 @@
                {{ form|crispy }}
                </fieldset>
                <button class="btn info btn-default" type="submit">ADD MENU</button>
-               </form>  
+               </form>
           </div><br><hr><br>
 {% endif %}
 <!--- 
@@ -34,7 +34,10 @@
 </div>-->
 
 
-    {% for post in posts %}
+<div class="container hr-sect">MY WATCHLIST</div><br>
+
+
+    {% for post in pinlist %}
     {% if post.active is True %}
     <div class="container">
 
@@ -51,8 +54,8 @@
   <!--   {% if post.image%}
       <div>
           <img src="{{ post.image.url }}" alt="Lights" width="100%" style="padding: 0% 4% 3%;">
-    </div>-->
-    {% endif %}
+    </div>
+    {% endif %}-->
                        <ul style="list-style-type:None;">
                        <b><li class="menulist">{% filter force_escape|upper|linebreaksbr %}{{ menu }}{% endfilter %}</li></b>
                       </ul>
@@ -72,6 +75,12 @@
                        <button  type="button" class="btn success btn-default btn-sm">
                        <span class="glyphicon glyphicon-earphone"></span></button>
                        </a>
+                       <a style="float: right; padding-right: 10px;"  href="{% url 'unpin' post.author %}">
+                       <button type="button" class="btn danger btn-default btn-sm" >
+                       <span class="glyphicon glyphicon-remove-sign"> REMOVE</span>
+                       </button>
+                       </a>
+
                        </div>
 
                   {% else %}
@@ -79,6 +88,12 @@
                        <a href="tel:{{ post.author.profile.number }}">
                        <button  type="button" class="btn info btn-default btn-sm">
                        <span class="glyphicon glyphicon-send"> REQUEST MENU </span></button>
+                       </a>
+
+                       <a style="float: right; padding-right: 10px;"  href="{% url 'unpin' post.author %}">
+                       <button type="button" class="btn danger btn-default btn-sm" >
+                       <span class="glyphicon glyphicon-remove-sign"> REMOVE</span>
+                       </button>
                        </a>
                   </div>
                   {% endif %}
@@ -88,6 +103,105 @@
                    <button type="button" class="btn danger btn-default btn-sm">
                    <span class="glyphicon glyphicon-remove-sign"> MESS IS CLOSED</span>
                    </button>
+
+                       <a style="float: right; padding-right: 10px;"  href="{% url 'unpin' post.author %}">
+                       <button type="button" class="btn danger btn-default btn-sm" >
+                       <span class="glyphicon glyphicon-remove-sign"> REMOVE</span>
+                       </button>
+                       </a>
+
+                   </div>            
+              {% endif %}
+          </div>
+          </div>
+     </div>
+
+
+    {% endif %}
+    {% endfor %}
+
+
+
+
+
+<br>
+<div class="container hr-sect">EXPLORE ALL</div><br>
+
+    {% for post in posts %}
+    {% if post.active is True %}
+    <div class="container">
+
+          <div class="panel panel-outline">
+          <div class="panel-heading">
+          <span class="text-left"> <dt><strong>{{ post.author.profile.mess_name }}</strong><small> ({{post.author.profile.area}})</small></dt>
+
+          <dd><small>Updated : {{ post.date_posted|timesince }} ago</small></dd></span>
+          </div><hr>
+          <div class="panle-body">
+            {% if post.author.profile.close == False %}
+                {% if session == post.session %}
+                {% with menu=post.menu %}  
+  <!--   {% if post.image%}
+      <div>
+          <img src="{{ post.image.url }}" alt="Lights" width="100%" style="padding: 0% 4% 3%;">
+    </div>
+    {% endif %}-->
+                       <ul style="list-style-type:None;">
+                       <b><li class="menulist">{% filter force_escape|upper|linebreaksbr %}{{ menu }}{% endfilter %}</li></b>
+                      </ul>
+
+                {% endwith %}
+                       
+                       <div class="a"> 
+                      <!--  <button type="button" class="btn success btn-default btn-sm">
+                       <span class="glyphicon glyphicon-thumbs-up"></span>
+                      </button>-->
+                       <a href="{{ post.author.profile.location }}" target="_blank" >
+                       <button  type="button" class="btn btn-default success btn-sm"> 
+                       <span class="glyphicon glyphicon-map-marker"></span></button>
+                       </a>
+                       <button type="button" class="btn success btn-default  btn-sm">{{ post.price }}</button> 
+                       <a href="tel:{{ post.author.profile.number }}">
+                       <button  type="button" class="btn success btn-default btn-sm">
+                       <span class="glyphicon glyphicon-earphone"></span></button>
+                       </a>
+
+                       <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
+                       <button type="button" class="btn info btn-default btn-sm" >
+                       <span class="glyphicon glyphicon-pushpin"> WATCHLIST</span>
+                       </button>
+                       </a>   
+
+                       </div>
+
+                  {% else %}
+                  <div class="a">
+                       <a href="tel:{{ post.author.profile.number }}">
+                       <button  type="button" class="btn info btn-default btn-sm">
+                       <span class="glyphicon glyphicon-send"> REQUEST MENU </span></button>
+                       </a>
+
+                       <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
+                       <button type="button" class="btn info btn-default btn-sm" >
+                       <span class="glyphicon glyphicon-pushpin"> WATCHLIST</span>
+                       </button>
+                       </a>  
+
+                  </div>
+                  {% endif %}
+
+              {% else %}
+                   <div class="a"> <!-- buttons start here -->
+                   <button type="button" class="btn danger btn-default btn-sm">
+                   <span class="glyphicon glyphicon-remove-sign"> MESS IS CLOSED</span>
+                   </button>
+
+                       <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
+                       <button type="button" class="btn info btn-default btn-sm" >
+                       <span class="glyphicon glyphicon-pushpin"> WATCHLIST</span>
+                       </button>
+                       </a>  
+
                    </div>            
               {% endif %}
           </div>
