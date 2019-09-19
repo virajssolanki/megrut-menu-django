@@ -20,27 +20,31 @@
 
 {% if mform %}
 <div class="container">
-                 <div class="panel panel-outline">
+          <div class="panel panel-outline">
                  <div class="panel-heading">
-                 <strong><span class="label label-primary">NEW</span> </strong>Share your feedback/experience with reastaurnt owner (So they can improve)</span>
+                 <strong><span class="label label-primary">NEW</span> </strong>Share your feedback/experience with reastaurnt owner (So they can improve)
                  </div>
                   
-          <div class="panel-heading">
-               <form method="POST">
-               {% csrf_token %}
-               <fieldset>
-               {{ mform|crispy }}
-               </fieldset>
-               <button class="btn info btn-default" type="submit">SEND MESSAGE</button>
-               </form>
-          </div></div>
-{% endif %}
+            <div class="panel-heading">
+                 <form method="POST">
+                 {% csrf_token %}
+                 <fieldset>
+                 {{ mform|crispy }}
+                 </fieldset>
+                 <button class="btn info btn-default" type="submit">SEND MESSAGE</button>
+                 </form>
+            </div>
+        </div>
+
 <div class="panel panel-outline">
                  <div class="panel-heading">
                   <strong><span class="label label-primary">NEW</span> </strong>Use <button type="button" class="btn info btn-default btn-sm" ><span class="glyphicon glyphicon-pushpin"></span></button> to pin your favourite restaurant at top 
                  </div>
 </div>
 </div>
+
+{% endif %}
+
 <!--- 
 <div class="panel-heading">
   <div class="alert alert-warning">
