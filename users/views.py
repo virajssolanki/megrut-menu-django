@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from blog.models import Post
+from blog.models import Post, Msg
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -66,6 +66,7 @@ def mymess(request, username):
 				return redirect('mymess', username=request.user)
 		else:
 			form = AddMenuForm()
+	msgs = Msg.objects.filter(to=request.user).order_by('-date_posted')
 	user = User.objects.get(username=username)
 	active_post = Post.objects.filter(author=request.user).filter(active=True)
 	posts = Post.objects.filter(author=request.user)

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.messages import constants as message_constants
-from .forms import AddMenuForm
+from .forms import AddMenuForm, MsgForm
 from django.contrib.auth.decorators import login_required
 MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
 									message_constants.INFO: 'info',
@@ -115,6 +115,15 @@ def menulist(request):
 				return redirect('mymess', username=request.user)
 		else:
 			form = AddMenuForm()
+	else:
+		if request.method == 'POST':
+			mform = MsgForm(request.POST)
+			if mform.is_valid():
+				mform.save()
+				messages.success(request, f'Message sent')
+				return redirect('blog-home')
+		else:
+			mform = MsgForm()
 
 #	if not request.COOKIES.get('city'):
 #		return render(request, 'blog/set_city.html')

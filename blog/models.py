@@ -32,3 +32,11 @@ class Post(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('post-detail', kwargs={'pk': self.pk})
+
+class Msg(models.Model):
+	message = models.TextField(max_length=350)
+	date_posted = models.DateTimeField(default=timezone.now)
+	to = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.message

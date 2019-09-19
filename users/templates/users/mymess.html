@@ -28,13 +28,11 @@
         </div>
       </div></br><hr><br>
 
-
                   <div class="panel panel-outline" style="border-color: #2196F3;">
                   <div class="panel-heading">
-                  <span class="text-left"> <dt><strong><span class="label label-primary"> {{ user.profile.follower }}</span> </strong>People have add your restaurant to their watchlist </span></dt>
+                  <span class="text-left"> <dt><strong><span class="label label-primary"> {{ user.profile.follower }}</span> </strong>People have add your restaurant to their watchlist </dt> </span>
                   </div>
                   </div>
-
 
 
     {% for post in active_post %}
@@ -117,6 +115,29 @@
               </div>
               </div>
     {% endif %} 
+
+                  <div class="panel panel-outline">
+                  <div class="panel-heading">
+
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Time</th>
+                          <th scope="col">Feedback</th>
+                        </tr>
+                      </thead>
+                      {% for msg in msgs %}
+                      <tbody>
+                        <tr>
+                          <td>{{ msg.date_posted|timesince }} ago</td>
+                          <td>{{ msg }}</td>
+                        </tr>
+                      </tbody>
+                      {% endfor %}
+                    </table>
+
+                  </div>
+                  </div>
 
 
     {% for post in posts %}

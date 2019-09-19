@@ -17,6 +17,30 @@
                </form>
           </div><br><hr><br>
 {% endif %}
+
+{% if mform %}
+<div class="container">
+                 <div class="panel panel-outline">
+                 <div class="panel-heading">
+                  <span class="text-left"> <dt><strong><span class="label label-primary">NEW</span> </strong>Share your feedback/experience with reastaurnt owner (So they can improve)</dt> </span>
+                 </div>
+                  
+          <div class="panel-heading">
+               <form method="POST">
+               {% csrf_token %}
+               <fieldset>
+               {{ mform|crispy }}
+               </fieldset>
+               <button class="btn info btn-default" type="submit">SEND MESSAGE</button>
+               </form>
+          </div></div>
+{% endif %}
+<div class="panel panel-outline">
+                 <div class="panel-heading">
+                  <span class="text-left"> <dt><strong><span class="label label-primary">NEW</span> </strong>Use <button type="button" class="btn info btn-default btn-sm" ><span class="glyphicon glyphicon-pushpin"></span></button> to pin your favourite restaurant at top  </dt> </span>
+                 </div>
+</div>
+</div>
 <!--- 
 <div class="panel-heading">
   <div class="alert alert-warning">
@@ -35,7 +59,7 @@
 
 {% if pinlist|length > 0 %}
 
-<div class="container hr-sect">MY WATCHLIST</div><br>
+<div class="container hr-sect"><button type="button" class="btn info btn-default btn-sm" ><span class="glyphicon glyphicon-pushpin"> PINNED</span></button></div><br>
 
 
     {% for post in pinlist %}
@@ -78,7 +102,7 @@
                        </a>
                        <a style="float: right; padding-right: 10px;"  href="{% url 'unpin' post.author %}">
                        <button type="button" class="btn danger btn-default btn-sm" >
-                       <span class="glyphicon glyphicon-remove-sign"> REMOVE</span>
+                       <span class="glyphicon glyphicon-remove-sign"></span>
                        </button>
                        </a>
 
@@ -93,7 +117,7 @@
 
                        <a style="float: right; padding-right: 10px;"  href="{% url 'unpin' post.author %}">
                        <button type="button" class="btn danger btn-default btn-sm" >
-                       <span class="glyphicon glyphicon-remove-sign"> REMOVE</span>
+                       <span class="glyphicon glyphicon-remove-sign"></span>
                        </button>
                        </a>
                   </div>
@@ -107,7 +131,7 @@
 
                        <a style="float: right; padding-right: 10px;"  href="{% url 'unpin' post.author %}">
                        <button type="button" class="btn danger btn-default btn-sm" >
-                       <span class="glyphicon glyphicon-remove-sign"> REMOVE</span>
+                       <span class="glyphicon glyphicon-remove-sign"></span>
                        </button>
                        </a>
 
@@ -126,7 +150,7 @@
 
 
 <br>
-<div class="container hr-sect">EXPLORE ALL</div><br>
+<div class="container hr-sect"><button type="button" class="btn info btn-default btn-sm" > OTHERS</button></div><br>
 
     {% for post in posts %}
     {% if post.active is True %}
@@ -169,7 +193,7 @@
 
                        <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
                        <button type="button" class="btn info btn-default btn-sm" >
-                       <span class="glyphicon glyphicon-pushpin"> WATCHLIST</span>
+                       <span class="glyphicon glyphicon-pushpin"></span>
                        </button>
                        </a>   
 
@@ -184,7 +208,7 @@
 
                        <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
                        <button type="button" class="btn info btn-default btn-sm" >
-                       <span class="glyphicon glyphicon-pushpin"> WATCHLIST</span>
+                       <span class="glyphicon glyphicon-pushpin"></span>
                        </button>
                        </a>  
 
@@ -199,7 +223,7 @@
 
                        <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
                        <button type="button" class="btn info btn-default btn-sm" >
-                       <span class="glyphicon glyphicon-pushpin"> WATCHLIST</span>
+                       <span class="glyphicon glyphicon-pushpin"></span>
                        </button>
                        </a>  
 
