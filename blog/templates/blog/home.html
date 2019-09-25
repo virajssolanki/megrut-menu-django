@@ -115,7 +115,7 @@
                   {% else %}
                   <div class="a">
                        <a href="tel:{{ post.author.profile.number }}">
-                       <button  type="button" class="btn info btn-default btn-sm">
+                       <button onclick='FB.AppEvents.logEvent("ReqMenuBtnClicked")' type="button" class="btn info btn-default btn-sm">
                        <span class="glyphicon glyphicon-send"> REQUEST MENU </span></button>
                        </a>
 
@@ -206,7 +206,7 @@
                   {% else %}
                   <div class="a">
                        <a href="tel:{{ post.author.profile.number }}">
-                       <button  type="button" class="btn info btn-default btn-sm">
+                       <button onclick='FB.AppEvents.logEvent("ReqMenuBtnClicked")'  type="button" class="btn info btn-default btn-sm">
                        <span class="glyphicon glyphicon-send"> REQUEST MENU </span></button>
                        </a>
 
