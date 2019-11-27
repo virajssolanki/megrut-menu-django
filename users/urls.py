@@ -10,6 +10,7 @@ urlpatterns = [
     path('edit_profile/<username>/', user_views.edit_profile, name='edit_profile'),
     path('mess_profile/<username>/', user_views.mess_profile, name='mess_profile'),
     path('mymess/<username>/', user_views.mymess, name='mymess'),
+    path('insight/<username>/', user_views.insight, name='insight'),
     path('close_mess/<username>/', user_views.close_mess, name='close_mess'),
     path('open_mess/<username>/', user_views.open_mess, name='open_mess'),
     path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True, template_name='users/login.html'), name='login'),

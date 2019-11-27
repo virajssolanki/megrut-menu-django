@@ -66,7 +66,6 @@ def mymess(request, username):
 				return redirect('mymess', username=request.user)
 		else:
 			form = AddMenuForm()
-	msgs = Msg.objects.filter(to=request.user).order_by('-date_posted')
 	user = User.objects.get(username=username)
 	active_post = Post.objects.filter(author=request.user).filter(active=True)
 	posts = Post.objects.filter(author=request.user)
@@ -77,6 +76,16 @@ def mymess(request, username):
 	if request.user == user:
 		context = locals()
 		return render(request, 'users/mymess.html', context)
+
+@login_required
+def insight(request, username):
+	msgs = Msg.objects.filter(to=request.user).order_by('-date_posted')
+	user = User.objects.get(username=username)
+	pinlist = 'pinlist'
+	context = locals()
+	return render(request, 'users/mymess.html', context)
+
+
 
 def mess_profile(request, username):
 	user = User.objects.get(username=username)
