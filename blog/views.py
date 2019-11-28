@@ -124,7 +124,7 @@ def menulist(request):
 				return redirect('blog-home')
 		else:
 			mform = MsgForm()
-
+ 
 #	if not request.COOKIES.get('city'):
 #		return render(request, 'blog/set_city.html')
 #	else:

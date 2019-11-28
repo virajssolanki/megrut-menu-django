@@ -7,3 +7,5 @@ form for add new site
 
 #social media template
 for new restaurent: we can post like sawariya is on megrut now.
+
+#zip code data
