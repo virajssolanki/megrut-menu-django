@@ -9,3 +9,4 @@ form for add new site
 for new restaurent: we can post like sawariya is on megrut now.
 
 #zip code data
+#add qoute of the day to other pages and increase ads imression

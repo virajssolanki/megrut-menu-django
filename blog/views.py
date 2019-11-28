@@ -124,25 +124,27 @@ def menulist(request):
 				return redirect('blog-home')
 		else:
 			mform = MsgForm()
- 
+
 #	if not request.COOKIES.get('city'):
 #		return render(request, 'blog/set_city.html')
 #	else:
 #		city = request.COOKIES.get('city')
-	posts = Post.objects.filter(active=True).order_by('-date_posted')
-	for i in posts:
-		if i.date_posted < timezone.now()-timedelta(hours=12):
-			i.session = 'old'
-			i.save()
 	if timezone.now().hour > 14:
 		session = 'dinner'
 	else:
 		session = 'lunch'
 
+	posts = Post.objects.filter(active=True).filter(session=session).order_by('date_posted')
+	allposts = Post.objects.filter(active=True).exclude(session=session).order_by('-date_posted')
+	post_for_pinlist = Post.objects.filter(active=True).order_by('-date_posted')
+#	for i in posts:
+#		if i.date_posted < timezone.now()-timedelta(hours=12):
+#			i.session = 'old'
+#			i.save()
 
 	pinlist = []
 
-	for i in posts:
+	for i in post_for_pinlist:
 		if request.COOKIES.get(i.author.username):
 			pinlist.append(i)
 		context = locals()

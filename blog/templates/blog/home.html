@@ -130,7 +130,7 @@
               {% else %}
                    <div class="a"> <!-- buttons start here -->
                    <button type="button" class="btn danger btn-default btn-sm">
-                   <span class="glyphicon glyphicon-remove-sign"> MESS IS CLOSED</span>
+                   <span class="glyphicon glyphicon-remove-sign"> CLOSED</span>
                    </button>
 
                        <a style="float: right; padding-right: 10px;"  href="{% url 'unpin' post.author %}">
@@ -154,10 +154,10 @@
 
 
 <br>
-<div class="container hr-sect">EXPLORE ALL</div><br>
+<div class="container hr-sect">{% filter force_escape|upper|linebreaksbr %}{{ session }}{% endfilter %} MENU</div><br>
 
-    {% for post in posts %}
-    {% if post.active is True %}
+{% for post in posts %}
+ 
     <div class="container">
 
           <div class="panel panel-outline">
@@ -168,7 +168,6 @@
           </div><hr>
           <div class="panle-body">
             {% if post.author.profile.close == False %}
-                {% if session == post.session %}
                 {% with menu=post.menu %}  
   <!--   {% if post.image%}
       <div>
@@ -203,7 +202,45 @@
 
                        </div>
 
-                  {% else %}
+            {% else %}
+                   <div class="a"> <!-- buttons start here -->
+                   <button type="button" class="btn danger btn-default btn-sm">
+                   <span class="glyphicon glyphicon-remove-sign"> CLOSED</span>
+                   </button>
+
+                       <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
+                       <button type="button" class="btn info btn-default btn-sm" >
+                       <span class="glyphicon glyphicon-pushpin"></span>
+                       </button>
+                       </a>  
+
+                   </div>            
+            {% endif %}
+          </div>
+          </div>
+     </div>
+
+
+{% endfor %}
+
+
+
+<br>
+<div class="container hr-sect">ALL RESTAURANTS</div><br>
+
+{% for post in allposts %}
+
+    <div class="container">
+
+          <div class="panel panel-outline">
+          <div class="panel-heading">
+          <span class="text-left"> <dt><strong>{{ post.author.profile.mess_name }}</strong><small> ({{post.author.profile.area}})</small></dt>
+
+          <dd><small>Updated : {{ post.date_posted|timesince }} ago</small></dd></span>
+          </div><hr>
+          <div class="panle-body">
+
+            {% if post.author.profile.close == False %}
                   <div class="a">
                        <a href="tel:{{ post.author.profile.number }}">
                        <button onclick='FB.AppEvents.logEvent("ReqMenuBtnClicked")'  type="button" class="btn info btn-default btn-sm">
@@ -217,12 +254,11 @@
                        </a>  
 
                   </div>
-                  {% endif %}
 
               {% else %}
                    <div class="a"> <!-- buttons start here -->
                    <button type="button" class="btn danger btn-default btn-sm">
-                   <span class="glyphicon glyphicon-remove-sign"> MESS IS CLOSED</span>
+                   <span class="glyphicon glyphicon-remove-sign"> CLOSED</span>
                    </button>
 
                        <a style="float: right; padding-right: 10px;" href="{% url 'pin' post.author %}">
@@ -238,8 +274,8 @@
      </div>
 
 
-    {% endif %}
-    {% endfor %}
+  {% endfor %}
+
 
 <!---
 <div class="container">
