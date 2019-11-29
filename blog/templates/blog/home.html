@@ -152,7 +152,7 @@
 {% endif %}
 
 
-
+{% if posts %}
 <br>
 <div class="container hr-sect">{% filter force_escape|upper|linebreaksbr %}{{ session }}{% endfilter %} MENU</div><br>
 
@@ -222,7 +222,7 @@
 
 
 {% endfor %}
-
+{% endif %}
 
 
 <br>

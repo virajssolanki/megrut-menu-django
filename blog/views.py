@@ -137,10 +137,11 @@ def menulist(request):
 	posts = Post.objects.filter(active=True).filter(session=session).order_by('date_posted')
 	allposts = Post.objects.filter(active=True).exclude(session=session).order_by('-date_posted')
 	post_for_pinlist = Post.objects.filter(active=True).order_by('-date_posted')
-#	for i in posts:
-#		if i.date_posted < timezone.now()-timedelta(hours=12):
-#			i.session = 'old'
-#			i.save()
+
+	for i in post_for_pinlist:
+		if i.date_posted < timezone.now()-timedelta(hours=12):
+			i.session = 'old'
+			i.save()
 
 	pinlist = []
 
