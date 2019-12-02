@@ -26,6 +26,8 @@ def feedback_join(request):
 def feedback_res(request):
 	return render(request, 'order/res.html')
 
+def support(request):
+	return render(request, 'order/support.html')
 
 @login_required
 def numbers(request):

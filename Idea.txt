@@ -10,5 +10,3 @@ for new restaurent: we can post like sawariya is on megrut now.
 
 #zip code data
 #add qoute of the day to other pages and increase ads imression
-# new pages empty screen: when zero messages: you havnt recived any msg yet
-when u will it will shown here
