@@ -6,7 +6,6 @@
     <b>New Update is available ,</b><br> Please update the app for a smooth experience.  <small><br>Ignore, if your have already updated.</small>
   </div>
 </div> -->
-<h1>SUPPORT PAGE</h1>
         <div class="container">
            <div class="panel panel-outline">
              <div class="panel-heading">
@@ -16,30 +15,26 @@
              </div>
             </div>
         </div>
-        
+<div class="container">        
+{% if not user.is_authenticated %}
 
-        <div class="container">
-           <div class="panel panel-outline">
-        <div class="panel-heading">
+    <div class="panel panel-default">
+      <div class="panel-heading">How to register your restaurant on megrut</div>
+      <div class="panel-body">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/hgvuvdyzYFc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
 
-          <h5>
-            <b>To add new MESS/RESTAURANT
-            <a href="https://forms.gle/srBkv59pvmZivXEu7"> click here</a></b>
-          </h5>
-
-          <h5>
-            <b>To share your feedback/idea 
-            <a href="https://forms.gle/zWPaj5r9mupThycH6"> click here</a></b>
-          </h5>
-          <h5>
-            <b>To do any collaboration with us
-            <a href="https://api.whatsapp.com/send?phone=917046717674&text=I%20want%20to%20collaborate%20with%20Megrut%20app"> click here</a></b>
-          </h5>
-
+{% else %}
+        <div class="panel panel-default">
+          <div class="panel-heading">How to use admin app</div>
+          <div class="panel-body">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/iLLVbXKVZWI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
         </div>
-            </div>
-        </div>
+{% endif %}
 
+</div>
 
 
 <!---

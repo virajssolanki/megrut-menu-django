@@ -16,7 +16,6 @@ def order_home(request):
 		form = AddNumberForm()
 	return render(request, 'order/order_home.html', {'form':form})
 	
-
 def feedback(request):
 	return render(request, 'order/chat.html')
 
