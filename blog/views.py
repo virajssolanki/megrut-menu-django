@@ -89,7 +89,6 @@ def activate(request, pk):
 	context = locals()
 	return redirect('mymess', username=request.user)
 
-
 def menulist(request):
 	user=request.user
 	if user.is_authenticated:
@@ -151,7 +150,6 @@ def menulist(request):
 		context = locals()
 	return render(request, 'blog/home.html', context)
 
-
 clean_menu = ['Sev tamatar, dudhi chana, roti, dal, rice, buttermilk, salad', 'Pani puri Baingan Bharta sev tameta  Dal Gujarati dal Punjabi rice roti buttermilk and green slat', 'DRY FRUIT KHEER, BATAKAWADA, MATAR PANEER, DAL RICE, PURI, RAMKADA', 'Pani puri, sev tameta, ringan oro, bajri, rotla, tava roti, dal rice, salad, chhas', 'BATAKA VATANA TAMETA, VATANA, roti, dal-rice, salad, chhas', 'Pani puri, Baingan Bharta, sev tameta , Dal Gujarati, dal Punjabi, rice, roti, buttermilk and green slat', 'BHINDA ALU FRY, MUG, ROTI, DAL, RICE, BUTTERMILK, SALAD', 'PAVBHAJI, MASALA RICE, Masala Onion, Garlic CHATNI', 'RINGAN BATETA,  DEAHIVAL, roti, dal-rice, salad, chhas', 'CHOLE CHANA, SUKI BHAJI, BHATURE, ROTI, DAL, RICE, BUTTERMILK, SALAD', 'Live Manchurian noodle, pav bhaji, dal fry, jeera rice, limbu, chhas, ramkda', 'LIVE DHOKALA, MATAR PANEER, roti, dal-rice, salad, chhas', 'Bhakhri, bataka vatana tamata, masur, tikhari, roti, dal, rice, buttermilk, salad']
 def autocomplete(request):
 	return HttpResponse(json.dumps(clean_menu), content_type="application/json")
@@ -182,3 +180,30 @@ def unpin(request, username):
 	user.profile.follower = follower
 	user.save()
 	return response
+
+def menubyzone(request, city, zone):
+#	if not request.COOKIES.get('city'):
+#		return render(request, 'blog/set_city.html')
+#	else:
+#		city = request.COOKIES.get('city')
+	if timezone.now().hour > 14:
+		session = 'dinner'
+	else:
+		session = 'lunch'
+
+	posts = Post.objects.filter(author__profile__city=city).filter(author__profile__zone=zone).filter(active=True).filter(session=session).order_by('date_posted')
+	allposts = Post.objects.filter(author__profile__city=city).filter(author__profile__zone=zone).filter(active=True).exclude(session=session).order_by('-date_posted')
+	post_for_pinlist = Post.objects.filter(active=True).order_by('-date_posted')
+
+	for i in post_for_pinlist:
+		if i.date_posted < timezone.now()-timedelta(hours=12):
+			i.session = 'old'
+			i.save()
+
+	pinlist = []
+
+	for i in post_for_pinlist:
+		if request.COOKIES.get(i.author.username):
+			pinlist.append(i)
+		context = locals()
+	return render(request, 'blog/home.html', context)

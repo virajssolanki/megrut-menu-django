@@ -41,7 +41,6 @@ def edit_profile(request, username):
 	context = locals()
 	return render(request, 'users/edit_profile.html', context)
 
-
 @login_required
 def mymess(request, username):
 	user=request.user

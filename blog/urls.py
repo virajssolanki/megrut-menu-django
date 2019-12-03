@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.menulist, name='blog-home'),
+    path('menu/<city>/<zone>', views.menubyzone, name='menubyzone'),
     path('post/autocomplete/', views.autocomplete, name='autocomplete'),
     path('post/set_city/<cityname>', views.set_city, name='set_city'),
     path('post/pin/<username>', views.pin, name='pin'),
