@@ -3,6 +3,8 @@
 {% block content %}
 
 <div class="container">
+{% if user.profile.profile_comp == True %}
+{% if user.profile.verified == True %}
     <div class="row">
       <div class="container">
         <dt style="font-size: 25px;">
@@ -28,7 +30,6 @@
         </div>
       </div></br><hr><br>
 
-
 {% if pinlist %}
                   <div class="panel panel-outline" style="border-color: #2196F3;">
                   <div class="panel-heading">
@@ -36,7 +37,6 @@
                   </div>
                   </div>
 {% endif %}
-
 
     {% for post in active_post %}
           {% if post.author.profile.close == False %}
@@ -172,5 +172,32 @@
           </div>
     {% endfor %}
 
+{% else %}
+                  <div class="panel panel-outline" style="border-color: #2196F3;">
+                  <div class="panel-heading">
+                  <span class="text-left"> </span> </strong>Your request for adding <b>{{ user.profile.mess_name }}</b> to Megrut is pending. <br/>Please wait. If it take more than a day Give us a call on below number</span>
+                  </div>
+                  </div>
+
+                  <div class="panel panel-outline" style="border-color: #2196F3;">
+                  <div class="panel-heading">
+                  <span class="text-left"><a href="tel:7046717674"><h2>+91 7046717674</h2></a></span>
+                  </div>
+                  </div>
+{% endif %}
+{% else %}
+                  <div class="panel panel-outline" style="border-color: #2196F3;">
+                  <div class="panel-heading">
+                  <span class="text-left"> </span> </strong>Your restaurant profile is not complate yet. Please complate profile to continue</span>
+                  </div>
+                  </div>
+
+
+                   <a href="{% url 'edit_profile' request.user %}">
+                   <button  type="button" class="btn btn-default success btn-sm"> 
+                   <span class="glyphicon glyphicon-pencil"></span> Update Profile Now </button>
+                   </a>
+
+{% endif %}
 </div>   
 {% endblock content %}

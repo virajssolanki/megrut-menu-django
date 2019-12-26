@@ -4,25 +4,25 @@ from django.contrib.auth.models import User
 #from PIL import Image 
 
 CITY_CHOICES = (
-    ('VADODARA','VADODARA'),
-    ('AHEMDAVAD', 'AHEMDAVAD'),
-    ('VIDHYANAGAR','VIDHYANAGAR'),
+	('VADODARA','VADODARA'),
+	('AHEMDAVAD', 'AHEMDAVAD'),
+	('VIDHYANAGAR','VIDHYANAGAR'),
 )
 
 PIN_CHOICES = (
-    ('Fateganj','Fateganj'),
-    ('Nizampura', 'Nizampura'),
-    ('Waghodia road', 'Waghodia road'),
-    ('MS campus', 'MS campus'),
-    ('Sama', 'Sama'),
-    ('Amitnagar', 'Amitnagar'),
-    ('MS girls campus', 'MS girls campus'),
+	('Fateganj','Fateganj'),
+	('Nizampura', 'Nizampura'),
+	('Waghodia road', 'Waghodia road'),
+	('MS campus', 'MS campus'),
+	('Sama', 'Sama'),
+	('Amitnagar', 'Amitnagar'),
+	('MS girls campus', 'MS girls campus'),
 )
 
 ZONE_CHOICES = (
-    ('zone-1','zone-1'),
-    ('zone-2', 'zone-2'),
-    ('zone-3','zone-3'),
+	('zone-1','zone-1'),
+	('zone-2', 'zone-2'),
+	('zone-3','zone-3'),
 )
 
 class Profile(models.Model):
@@ -36,6 +36,8 @@ class Profile(models.Model):
 	zone = models.CharField(max_length=40,choices=ZONE_CHOICES, default='zone-1')
 	close = models.BooleanField(default=False)
 	follower = models.IntegerField(default=0)
+	verified = models.BooleanField(default=True)
+	profile_comp = models.BooleanField(default=True)
 
 	def __str__(self):
 		return f'{self.user.username} Profile'

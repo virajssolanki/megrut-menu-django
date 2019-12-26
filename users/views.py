@@ -9,19 +9,23 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from blog.forms import AddMenuForm
 
 def register(request):
-	if request.method == 'POST':
-		form = UserRegisterForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username  = form.cleaned_data.get('username')
-			raw_password = form.cleaned_data.get('password1')
-			user = authenticate(username=username, password=raw_password)
-			login(request, user)
-			messages.success(request, f'ACCOUNT CREATED FOR {username}!')
-			return redirect('edit_profile', username=username)
+	user=request.user
+	if not user.is_authenticated:
+		if request.method == 'POST':
+			form = UserRegisterForm(request.POST)
+			if form.is_valid():
+				form.save()
+				username  = form.cleaned_data.get('username')
+				raw_password = form.cleaned_data.get('password1')
+				user = authenticate(username=username, password=raw_password)
+				login(request, user)
+				messages.success(request, f'ACCOUNT CREATED FOR {username}!')
+				return redirect('edit_profile', username=username)
+		else:
+			form = UserRegisterForm()
+		return render(request, 'users/register.html', {'form':form})
 	else:
-		form = UserRegisterForm()
-	return render(request, 'users/register.html', {'form':form})
+		return redirect('blog/blog-home')
 
 @login_required
 def edit_profile(request, username):
@@ -32,7 +36,9 @@ def edit_profile(request, username):
 			p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 			if u_form.is_valid() and p_form.is_valid():
 				u_form.save()
-				p_form.save()
+				p = p_form.save(commit=False)
+				p.profile_comp = True
+				p.save()
 				messages.success(request, f'PROFILE UPDATED SUCCESSFULLY')
 				return redirect('mymess', username=user.username)
 		else:

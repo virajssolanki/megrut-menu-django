@@ -76,7 +76,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     
     <link rel="shortcut icon" href="{% static 'blog/megrut.ico' %}"/>
@@ -119,10 +121,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PV6DCSQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<!---
+
     {% if request.user.is_authenticated %}
   	<header class="site-header">
-      <nav class="navbar navbar-default">
+ <!---      <nav class="navbar navbar-fixed-bottom navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -131,13 +133,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'blog-home' %}">{{ request.user.username }}</a>
+                <a class="navbar-brand" href="{% url 'blog-home' %}">{{ request.user.profile.mess_name }}</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'mymess' request.user %}">menu</a></li>
                     <li><a href="{% url 'insight' request.user %}">insight</a></li>
-                    <li><a href="{% url 'mess_profile' user.username %}">profile</a></li> 
+                    <li><a href="{% url 'support' %}">support</a></li>
+                   <li><a href="{% url 'mess_profile' user.username %}">profile</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if not user.is_authenticated %}
@@ -148,10 +151,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </ul>
             </div>
         </div>
-      </nav>
+      </nav>--> 
+
+
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="{% url 'mymess' request.user %}">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text {{active}} ">Home</span>
+          </a>
+        </li>
+
+
+        <li class="has-subnav">
+          <a href="{% url 'insight' request.user %}">
+            <i class="fa fa-line-chart"></i>
+            <span class="nav-text">Insight</span>
+          </a>
+        </li>
+
+        <li class="has-subnav">
+          <a href="{% url 'support' %}">
+            <i class="fa fa-comments
+             fa-2x"></i>
+            <span class="nav-text">Support</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
     </header>
     {% endif %}
-    --->
+
+
+
+
+
+
 <br>
     <main role="main" class="container">
       <div class="row">
@@ -165,7 +202,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           {% endif %}
           </div>
 
-          {% block content %}{% endblock %}
+          {% block content %}{% endblock %}<br><br>
           
         </div>
     </main>
