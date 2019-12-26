@@ -36,8 +36,8 @@ class Profile(models.Model):
 	zone = models.CharField(max_length=40,choices=ZONE_CHOICES, default='zone-1')
 	close = models.BooleanField(default=False)
 	follower = models.IntegerField(default=0)
-	verified = models.BooleanField(default=True)
-	profile_comp = models.BooleanField(default=True)
+	verified = models.BooleanField(default=False)
+	profile_comp = models.BooleanField(default=False)
 
 	def __str__(self):
 		return f'{self.user.username} Profile'
