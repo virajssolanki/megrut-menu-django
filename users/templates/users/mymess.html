@@ -183,7 +183,8 @@
                   <div class="panel-heading">
                   <span class="text-left"><a href="tel:7046717674"><h2>+91 7046717674</h2></a></span>
                   </div>
-                  </div>
+                  </div><br><br>
+                  <a class="text-muted" href="{% url 'logout'  %}">Logout</a>
 {% endif %}
 {% else %}
                   <div class="panel panel-outline" style="border-color: #2196F3;">
@@ -196,7 +197,8 @@
                    <a href="{% url 'edit_profile' request.user %}">
                    <button  type="button" class="btn btn-default success btn-sm"> 
                    <span class="glyphicon glyphicon-pencil"></span> Update Profile Now </button>
-                   </a>
+                   </a><br><br>
+                   <a class="text-muted" href="{% url 'logout'  %}">Logout</a>
 
 {% endif %}
 </div>   

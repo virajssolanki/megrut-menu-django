@@ -195,9 +195,9 @@ nav.main-nav li.active>a{
 @media (max-width:35em) {
     
     .main-nav {
-        background: #eee;
+        background: #fff;
         z-index: 1;
-        border-right: 1px solid #e5e5e5;
+        border-right: 1px solid #fff;
         position: fixed;
         margin: 0;
         left: 0;
