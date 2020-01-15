@@ -89,7 +89,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  </style>
 {% static 'website/template.css' %}
 
-
 </head>
    
 <body>
@@ -97,32 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PV6DCSQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    <main>
-    <header>
-      <div class="container">
-        <strong>
-         <nav class="navbar navbar-default navbar-fixed-top" id="drp">
-          <div class="container-fluid">
-           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-            </button>
-            <strong><a class="navbar-brand" href="{% url 'website' %}">Megrut</a></strong>
-            </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-              <li><a href="{% url 'login' %}">Admin Login</a></li>
-              <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
-          </ul> 
-          </div>
-          </div>
-          </nav>
-        </strong>
-      </div>
-     </header>
-     </main>
+
     {% block content %}
     {% endblock %}
 </body>
