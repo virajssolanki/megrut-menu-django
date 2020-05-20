@@ -13,7 +13,7 @@ django-storages==1.7.1
 docutils==0.14
 gspread==3.1.0
 gunicorn==19.9.0
-httplib2==0.13.0
+httplib2==0.18.0
 idna==2.8
 jmespath==0.9.4
 kombu==3.0.37
